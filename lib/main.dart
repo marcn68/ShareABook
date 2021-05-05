@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:share_a_book/services/web_api/web_api.dart';
 import 'package:share_a_book/services/web_api/web_api_implementation.dart';
+import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/pages/add_book.dart';
+import 'package:share_a_book/ui/widgets/drawer.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,8 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Constants.PRIMARY_BLUE,
       ),
       body: Center(
         child: Column(
