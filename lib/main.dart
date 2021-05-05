@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/services/web_api/web_api.dart';
 import 'package:share_a_book/services/web_api/web_api_implementation.dart';
 import 'package:share_a_book/shared/constants.dart';
@@ -6,6 +7,7 @@ import 'package:share_a_book/ui/pages/add_book.dart';
 import 'package:share_a_book/ui/widgets/drawer.dart';
 
 void main() {
+  setupServiceLocator();
   runApp(MyApp());
 }
 
@@ -54,12 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
-              onPressed: () {
-                webImp.getBookById();
-              },
-              child: Text("Call API"),
-            ),
             Text(
               'You have pushed the button this many times:',
             ),
