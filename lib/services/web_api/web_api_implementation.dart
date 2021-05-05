@@ -8,49 +8,48 @@ class WebApiImplementation implements WebApi {
   final _path = "api/books";
   final Map<String, String> _headers = {'Accept': 'application/json'};
 
-  var isbn = "ISBN:9781408855898";
+  var isbn = "ISBN:";
   List<Book> _books;
 
   @override
-  Future<List<Book>> getBookById() async {
+  Future<List<Book>> getBookById(jsonIsbn) async {
+    isbn += jsonIsbn.toString();
     var queryParameters = {'bibkeys': isbn, 'jscmd': 'data', 'format': 'json'};
     final uri = Uri.https(_host, _path, queryParameters);
     var response = await http.get(uri, headers: _headers);
     final jsonObject = json.decode(response.body);
     _books = _createBookList(jsonObject);
-    print(jsonObject["ISBN:9781408855898"]["title"]);
+    // print(jsonObject["ISBN:9781408855898"]["title"]);
 
     return _books;
   }
 
   List<Book> _createBookList(Map jsonObject) {
-    String isbn = jsonObject["ISBN:9781408855898"]["identifiers"]["isbn_10"]
+    String isbn = jsonObject[this.isbn]["identifiers"]["isbn_10"]
         .toString()
         .substring(1, 10);
-    String bookTitle = jsonObject["ISBN:9781408855898"]["title"].toString();
+    String bookTitle = jsonObject[this.isbn]["title"].toString();
 
     List<String> authors = [];
-    for (var author in jsonObject["ISBN:9781408855898"]["authors"]) {
+    for (var author in jsonObject[this.isbn]["authors"]) {
       authors.add(author["name"].toString());
     }
 
-    int numberOfPages = jsonObject["ISBN:9781408855898"]["number_of_pages"];
+    int numberOfPages = jsonObject[this.isbn]["number_of_pages"];
 
     List<String> publishers = [];
-    for (var publisher in jsonObject["ISBN:9781408855898"]["publishers"]) {
+    for (var publisher in jsonObject[this.isbn]["publishers"]) {
       publishers.add(publisher["name"].toString());
     }
 
-    String publishDate =
-        jsonObject["ISBN:9781408855898"]["publish_date"].toString();
+    String publishDate = jsonObject[this.isbn]["publish_date"].toString();
 
     List<String> subjects = [];
-    for (var subject in jsonObject["ISBN:9781408855898"]["subjects"]) {
+    for (var subject in jsonObject[this.isbn]["subjects"]) {
       subjects.add(subject["name"].toString());
     }
 
-    String cover =
-        jsonObject["ISBN:9781408855898"]["cover"]["medium"].toString();
+    String cover = jsonObject[this.isbn]["cover"]["medium"].toString();
 
     List<Book> list = [];
     list.add(Book(
