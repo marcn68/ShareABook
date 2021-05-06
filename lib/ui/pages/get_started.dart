@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:share_a_book/ui/widgets/button_style.dart';
 import 'package:share_a_book/ui/widgets/label_style.dart';
 
+import 'login.dart';
+
 class GetStartedScreen extends StatefulWidget {
   @override
   _GetStartedScreenState createState() => _GetStartedScreenState();
@@ -45,12 +47,11 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CustomLabelStyle(
-                          "Get ready to lending and renting book in a creative way!"),
+                      CustomLabelStyle("Get ready to lending and renting book in a creative way!", 18.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                           height: 42.0,
-                          child: CustomButtonStyle("GET STARTED")
+                          child: CustomButtonStyle("GET STARTED", "onGetStarted", this.context)
                       ),
                     ],
                   ),

@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 
-Widget CustomLabelStyle(String text) {
-  return Text(
-    text,
-    textAlign: TextAlign.center,
-    style: TextStyle(
-      fontSize: 18.0,
-    ),
-  );
+class CustomLabelStyle extends StatelessWidget {
+  CustomLabelStyle(this.text, this.fontSize);
+
+  final String text;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: fontSize,
+      ),
+    );
+  }
 }
