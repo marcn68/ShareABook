@@ -48,32 +48,32 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CustomLabelStyle("Login", 20.0),
-                      CustomInputStyle("Email"),
-                      CustomInputStyle("Password"),
+                      CustomLabel(text: "Login", fontSize: 20.0),
+                      CustomInput(label: "Email"),
+                      CustomInput(label: "Password"),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 42.0,
-                          child: CustomButtonStyle("Login", "", this.context)
+                          child: CustomButton(text: "Login", function: function)
                       ),
-                      CustomLabelStyle("Or login with", 16.0),
+                      CustomLabel(text: "Or login with", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                           height: 45.0,
                           width: 200,
-                          child: CustomSignInButtonStyle("Login with Google", Buttons.Google, "", this.context)
+                          child: CustomSignInButton(text: "Login with Google", buttonsType: Buttons.Google, function: function)
                       ),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 45.0,
                           width: 200,
-                          child:CustomSignInButtonStyle("Login with Facebook", Buttons.Facebook, "", this.context)
+                          child:CustomSignInButton(text: "Login with Facebook", buttonsType: Buttons.Facebook, function: function)
                       ),
-                      CustomLabelStyle("Don't have an account?", 16.0),
+                      CustomLabel(text: "Don't have an account?", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           height: 42.0,
-                          child: CustomButtonStyle("Register", "", this.context)
+                          child: CustomButton(text: "GET STARTED", function: function)
                       ),
                     ],
                   ),
@@ -82,5 +82,8 @@ class _LoginScreenState extends State<LoginScreen> {
         ) // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+  /*Functions*/
+  /*To change*/
+  dynamic function() async { }
 }
 

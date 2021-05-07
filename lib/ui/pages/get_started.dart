@@ -47,11 +47,11 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CustomLabelStyle("Get ready to lending and renting book in a creative way!", 18.0),
+                      CustomLabel(text: "Get ready to lending and renting book in a creative way!", fontSize: 18.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                           height: 42.0,
-                          child: CustomButtonStyle("GET STARTED", "onGetStarted", this.context)
+                          child: CustomButton(text: "GET STARTED", function: navigateToLogin)
                       ),
                     ],
                   ),
@@ -60,5 +60,12 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
         ) // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}
 
+  /*Functions*/
+  dynamic navigateToLogin() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
+  }
+}

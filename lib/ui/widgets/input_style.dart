@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomInputStyle extends StatelessWidget {
-  CustomInputStyle(this.label);
+class CustomInput extends StatelessWidget {
+  CustomInput({this.label});
 
   final String label;
 

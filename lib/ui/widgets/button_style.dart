@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:share_a_book/ui/pages/login.dart';
 
-class CustomButtonStyle extends StatelessWidget {
-  CustomButtonStyle(this.text, this.function, this.context);
+class CustomButton extends StatelessWidget {
+  CustomButton({this.text, this.function});
 
   final String text;
-  final String function;
-  final BuildContext context;
+  final dynamic function;
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      onPressed: onGetStarted,
-      padding: EdgeInsets.all(10.0),
-      color: Color(0xff2395C8),
-      textColor: Colors.black,
-      child: Text(this.text, style: TextStyle(fontSize: 18)),
+    return ElevatedButton(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                side: BorderSide(color: Color(0xff2395C8)))),
+      ),
+      onPressed: function,
+      child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Text(this.text,
+              style: TextStyle(fontSize: 18, color: Colors.black))),
     );
   }
-
-  void onGetStarted() async {
-    print("hi");
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => LoginScreen()),
-    );
-  }
-
 }

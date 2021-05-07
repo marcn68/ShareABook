@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomLabelStyle extends StatelessWidget {
-  CustomLabelStyle(this.text, this.fontSize);
+class CustomLabel extends StatelessWidget {
+  CustomLabel({this.text, this.fontSize});
 
   final String text;
   final double fontSize;

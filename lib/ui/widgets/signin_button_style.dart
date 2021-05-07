@@ -3,20 +3,19 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:share_a_book/ui/pages/login.dart';
 
-class CustomSignInButtonStyle extends StatelessWidget {
-  CustomSignInButtonStyle(this.text, this.buttonsType, this.function, this.context);
+class CustomSignInButton extends StatelessWidget {
+  CustomSignInButton({this.text, this.buttonsType, this.function});
 
   final String text;
   final Buttons buttonsType;
-  final String function;
-  final BuildContext context;
+  final dynamic function;
 
   @override
   Widget build(BuildContext context) {
     return SignInButton(
       buttonsType,
       text: text,
-      onPressed: () {},
+      onPressed: function,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
     );
   }
