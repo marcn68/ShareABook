@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:share_a_book/ui/widgets/button_style.dart';
-import 'package:share_a_book/ui/widgets/label_style.dart';
+import 'package:share_a_book/ui/widgets/custom_button.dart';
+import 'package:share_a_book/ui/widgets/custom_label.dart';
+
+import 'login.dart';
 
 class GetStartedScreen extends StatefulWidget {
   @override
@@ -45,12 +47,11 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CustomLabelStyle(
-                          "Get ready to lending and renting book in a creative way!"),
+                      CustomLabel(text: "Get ready to lending and renting book in a creative way!", fontSize: 18.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                           height: 42.0,
-                          child: CustomButtonStyle("GET STARTED")
+                          child: CustomButton(text: "GET STARTED", onPressed: navigateToLogin)
                       ),
                     ],
                   ),
@@ -59,5 +60,12 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
         ) // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}
 
+  /*Functions*/
+  void navigateToLogin() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
+  }
+}
