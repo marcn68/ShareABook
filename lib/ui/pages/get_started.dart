@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:share_a_book/ui/widgets/button_style.dart';
-import 'package:share_a_book/ui/widgets/label_style.dart';
+import 'package:share_a_book/ui/widgets/custom_button.dart';
+import 'package:share_a_book/ui/widgets/custom_label.dart';
 
 import 'login.dart';
 
@@ -51,7 +51,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                           height: 42.0,
-                          child: CustomButton(text: "GET STARTED", function: navigateToLogin)
+                          child: CustomButton(text: "GET STARTED", onPressed: navigateToLogin)
                       ),
                     ],
                   ),
@@ -62,7 +62,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   }
 
   /*Functions*/
-  dynamic navigateToLogin() async {
+  void navigateToLogin() async {
     await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => LoginScreen()),

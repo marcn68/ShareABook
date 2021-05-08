@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:share_a_book/ui/widgets/button_style.dart';
-import 'package:share_a_book/ui/widgets/signin_button_style.dart';
-import 'package:share_a_book/ui/widgets/input_style.dart';
-import 'package:share_a_book/ui/widgets/label_style.dart';
+import 'package:share_a_book/ui/widgets/custom_button.dart';
+import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
+import 'package:share_a_book/ui/widgets/custom_input.dart';
+import 'package:share_a_book/ui/widgets/custom_label.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 
@@ -54,26 +54,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 42.0,
-                          child: CustomButton(text: "Login", function: function)
+                          child: CustomButton(text: "Login", onPressed: (){})
                       ),
                       CustomLabel(text: "Or login with", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                           height: 45.0,
                           width: 200,
-                          child: CustomSignInButton(text: "Login with Google", buttonsType: Buttons.Google, function: function)
+                          child: CustomSignInButton(text: "Login with Google", provider: Buttons.Google, onPressed: (){})
                       ),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 45.0,
                           width: 200,
-                          child:CustomSignInButton(text: "Login with Facebook", buttonsType: Buttons.Facebook, function: function)
+                          child:CustomSignInButton(text: "Login with Facebook", provider: Buttons.Facebook, onPressed: (){})
                       ),
                       CustomLabel(text: "Don't have an account?", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           height: 42.0,
-                          child: CustomButton(text: "GET STARTED", function: function)
+                          child: CustomButton(text: "Register", onPressed: (){})
                       ),
                     ],
                   ),
@@ -82,8 +82,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ) // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-  /*Functions*/
-  /*To change*/
-  dynamic function() async { }
 }
 

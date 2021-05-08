@@ -4,18 +4,18 @@ import 'package:flutter_signin_button/button_view.dart';
 import 'package:share_a_book/ui/pages/login.dart';
 
 class CustomSignInButton extends StatelessWidget {
-  CustomSignInButton({this.text, this.buttonsType, this.function});
+  CustomSignInButton({this.text, this.provider, this.onPressed});
 
   final String text;
-  final Buttons buttonsType;
-  final dynamic function;
+  final Buttons provider;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return SignInButton(
-      buttonsType,
+      provider,
       text: text,
-      onPressed: function,
+      onPressed: onPressed,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
     );
   }
