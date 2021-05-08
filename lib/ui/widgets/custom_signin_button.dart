@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:flutter_signin_button/button_view.dart';
 import 'package:share_a_book/ui/pages/login.dart';
+import 'package:sign_button/constants.dart';
+import 'package:sign_button/create_button.dart';
 
 class CustomSignInButton extends StatelessWidget {
-  CustomSignInButton({this.text, this.provider, this.onPressed});
+  CustomSignInButton({this.text, this.provider, this.isMini, this.onPressed});
 
+  final ButtonType provider;
   final String text;
-  final Buttons provider;
+  final bool isMini;
   final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return SignInButton(
-      provider,
-      text: text,
+    return isMini ?
+    SignInButton.mini(
+      buttonType: provider,
       onPressed: onPressed,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-    );
+    ) :
+    SignInButton(
+        buttonType: provider,
+        buttonSize: ButtonSize.small,
+        shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0)),
+        btnText: text,
+        onPressed: onPressed);
   }
-
 }
