@@ -41,22 +41,26 @@ class Book {
     condition = json['condition'];
   }
 
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = new Map<String, dynamic>();
-  //   data['title'] = this.bookTitle;
-  //   if (this.authors != null) {
-  //     data['authors'] = this.authors.map((v) => v).toList();
-  //   }
-  //   if (this.publishers != null) {
-  //     data['publishers'] = this.publishers.map((v) => v).toList();
-  //   }
-  //   data['publish_date'] = this.publishDate;
-  //   if (this.subjects != null) {
-  //     data['subjects'] = this.subjects.map((v) => v).toList();
-  //   }
-  //   if (this.cover != null) {
-  //     data['cover'] = this.cover;
-  //   }
-  //   return data;
-  // }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['isbn'] = this.isbn;
+    data['title'] = this.bookTitle;
+    if (this.authors != null) {
+      data['authors'] = this.authors.map((v) => v).toList();
+    }
+    data['numberOfPages'] = this.numberOfPages;
+    if (this.publishers != null) {
+      data['publishers'] = this.publishers.map((v) => v).toList();
+    }
+    data['publish_date'] = this.publishDate;
+    if (this.subjects != null) {
+      data['subjects'] = this.subjects.map((v) => v).toList();
+    }
+    if (this.cover != null) {
+      data['cover'] = this.cover;
+    }
+    data['price'] = this.price;
+    data['condition'] = this.condition.index;
+    return data;
+  }
 }
