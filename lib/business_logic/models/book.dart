@@ -1,3 +1,5 @@
+enum Condition { Poor, Fine, Good, VeryGood, AsNew }
+
 class Book {
   String isbn;
   String bookTitle;
@@ -7,6 +9,8 @@ class Book {
   String publishDate;
   List<String> subjects;
   String cover;
+  int price;
+  Condition condition;
 
   Book(this.isbn, this.bookTitle, this.authors, this.numberOfPages,
       this.publishers, this.publishDate, this.subjects, this.cover);
@@ -33,6 +37,8 @@ class Book {
       });
     }
     cover = json['cover'] != null ? json['small'] : null;
+    price = json['price'];
+    condition = json['condition'];
   }
 
   // Map<String, dynamic> toJson() {
