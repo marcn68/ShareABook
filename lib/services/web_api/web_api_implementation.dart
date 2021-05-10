@@ -38,8 +38,12 @@ class WebApiImplementation implements WebApi {
     int numberOfPages = jsonObject[this.isbn]["number_of_pages"];
 
     List<String> publishers = [];
-    for (var publisher in jsonObject[this.isbn]["publishers"]) {
-      publishers.add(publisher["name"].toString());
+    if (jsonObject[this.isbn]["publishers"] != null) {
+      for (var publisher in jsonObject[this.isbn]["publishers"]) {
+        publishers.add(publisher["name"].toString());
+      }
+    } else {
+      publishers.add("No publishers");
     }
 
     String publishDate = jsonObject[this.isbn]["publish_date"].toString();
