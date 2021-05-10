@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
 import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
 import 'package:share_a_book/ui/widgets/custom_input.dart';
@@ -7,7 +8,6 @@ import 'package:share_a_book/ui/widgets/custom_label.dart';
 import 'package:sign_button/constants.dart';
 
 import 'login.dart';
-
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff2395C8),
+        backgroundColor: Constants.PRIMARY_BLUE,
         body: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,9 +43,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: Colors.transparent,
                       width: 8,
                     ),
-                    color: Color(0xffDFEEF5),
+                    color: Constants.SECONDARY_BLUE,
                     borderRadius:
-                    BorderRadius.vertical(top: Radius.circular(50.0)),
+                        BorderRadius.vertical(top: Radius.circular(50.0)),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -60,8 +60,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                           height: 42.0,
-                          child: CustomButton(text: "Register", onPressed: (){})
-                      ),
+                          child:
+                              CustomButton(text: "Register", onPressed: () {})),
                       CustomLabel(text: "Or register with", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -69,14 +69,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              CustomSignInButton(text: "", provider: ButtonType.google, isMini: true, onPressed: (){}),
-                              CustomSignInButton(text: "", provider: ButtonType.facebook, isMini: true, onPressed: (){})
+                              CustomSignInButton(
+                                  text: "",
+                                  provider: ButtonType.google,
+                                  isMini: true,
+                                  onPressed: () {}),
+                              CustomSignInButton(
+                                  text: "",
+                                  provider: ButtonType.facebook,
+                                  isMini: true,
+                                  onPressed: () {})
                             ],
-                          )
-                      ),
+                          )),
                       Divider(
                         color: Colors.black,
-
                       ),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 2, 0, 0),
@@ -84,18 +90,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              CustomLabel(text: "Already have an account?", fontSize: 16.0),
+                              CustomLabel(
+                                  text: "Already have an account?",
+                                  fontSize: 16.0),
                               SizedBox(width: 20),
-                              CustomButton(text: "Login", onPressed: navigateToLogin)
+                              CustomButton(
+                                  text: "Login", onPressed: navigateToLogin)
                             ],
-                          )
-                      ),
+                          )),
                     ],
                   ),
                 ),
               ]),
         ) // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        );
   }
 
   void navigateToLogin() async {
@@ -105,4 +113,3 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
-

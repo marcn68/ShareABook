@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/pages/register.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
 import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
 import 'package:share_a_book/ui/widgets/custom_input.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 import 'package:sign_button/constants.dart';
-
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff2395C8),
+        backgroundColor: Constants.PRIMARY_BLUE,
         body: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,9 +42,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Colors.transparent,
                       width: 8,
                     ),
-                    color: Color(0xffDFEEF5),
+                    color: Constants.SECONDARY_BLUE,
                     borderRadius:
-                    BorderRadius.vertical(top: Radius.circular(50.0)),
+                        BorderRadius.vertical(top: Radius.circular(50.0)),
                   ),
                   child: Column(
                     children: <Widget>[
@@ -54,31 +54,37 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 42.0,
-                          child: CustomButton(text: "Login", onPressed: (){})
-                      ),
+                          child: CustomButton(text: "Login", onPressed: () {})),
                       CustomLabel(text: "Or login with", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                           height: 45.0,
-                          child: CustomSignInButton(text: "Login with Google", provider: ButtonType.google, isMini: false, onPressed: (){})
-                      ),
+                          child: CustomSignInButton(
+                              text: "Login with Google",
+                              provider: ButtonType.google,
+                              isMini: false,
+                              onPressed: () {})),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 45.0,
-                          child:CustomSignInButton(text: "Login with Facebook", provider: ButtonType.facebook, isMini: false, onPressed: (){})
-                      ),
-                      CustomLabel(text: "Don't have an account?", fontSize: 16.0),
+                          child: CustomSignInButton(
+                              text: "Login with Facebook",
+                              provider: ButtonType.facebook,
+                              isMini: false,
+                              onPressed: () {})),
+                      CustomLabel(
+                          text: "Don't have an account?", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           height: 42.0,
-                          child: CustomButton(text: "Register", onPressed: navigateToRegister)
-                      ),
+                          child: CustomButton(
+                              text: "Register", onPressed: navigateToRegister)),
                     ],
                   ),
                 ),
               ]),
         ) // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        );
   }
 
   void navigateToRegister() async {
@@ -88,4 +94,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
