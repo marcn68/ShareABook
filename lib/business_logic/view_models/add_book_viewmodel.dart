@@ -12,23 +12,39 @@ class AddBookViewModel extends ChangeNotifier {
     return _books;
   }
 
+  bool response;
+  String msg;
+
   void getBookInfo(isbn) async {
     _books = await _bookAddService.getBooksByISBN(isbn);
     notifyListeners();
   }
+
+  void sendBookInfo(Book book, String price, Condition condition) async {
+    book.price = price as int;
+    book.condition = condition;
+
+    response = await _bookAddService.sendBookInfo(book);
+    if (response) {
+      msg = "Book was added successfully";
+    } else {
+      msg = "Error occure while adding the book";
+    }
+    notifyListeners();
+  }
 }
 
-class BookPresentation {
-  final int isbn;
-  final String bookTitle;
-  final List<String> auhtors;
-  final publishDate;
-  final int numberOfPages;
+// class BookPresentation {
+//   final int isbn;
+//   final String bookTitle;
+//   final List<String> auhtors;
+//   final publishDate;
+//   final int numberOfPages;
 
-  BookPresentation(
-      {this.isbn,
-      this.bookTitle,
-      this.auhtors,
-      this.publishDate,
-      this.numberOfPages});
-}
+//   BookPresentation(
+//       {this.isbn,
+//       this.bookTitle,
+//       this.auhtors,
+//       this.publishDate,
+//       this.numberOfPages});
+// }
