@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/ui/pages/register.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
 import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
 import 'package:share_a_book/ui/widgets/custom_input.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:sign_button/constants.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -46,11 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     BorderRadius.vertical(top: Radius.circular(50.0)),
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CustomLabel(text: "Login", fontSize: 20.0),
-                      CustomInput(label: "Email"),
-                      CustomInput(label: "Password"),
+                      CustomInput(label: "Email", verticalPadding: 16),
+                      CustomInput(label: "Password", verticalPadding: 16),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 42.0,
@@ -60,26 +60,31 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                           height: 45.0,
-                          width: 200,
-                          child: CustomSignInButton(text: "Login with Google", provider: Buttons.Google, onPressed: (){})
+                          child: CustomSignInButton(text: "Login with Google", provider: ButtonType.google, isMini: false, onPressed: (){})
                       ),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 45.0,
-                          width: 200,
-                          child:CustomSignInButton(text: "Login with Facebook", provider: Buttons.Facebook, onPressed: (){})
+                          child:CustomSignInButton(text: "Login with Facebook", provider: ButtonType.facebook, isMini: false, onPressed: (){})
                       ),
                       CustomLabel(text: "Don't have an account?", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           height: 42.0,
-                          child: CustomButton(text: "Register", onPressed: (){})
+                          child: CustomButton(text: "Register", onPressed: navigateToRegister)
                       ),
                     ],
                   ),
                 ),
               ]),
         ) // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  void navigateToRegister() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegisterScreen()),
     );
   }
 }
