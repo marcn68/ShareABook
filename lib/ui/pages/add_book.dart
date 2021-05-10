@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-
-void main() => runApp(AddBook());
+import 'package:share_a_book/ui/pages/add_book_detail.dart';
+import 'package:share_a_book/ui/widgets/book_card_item.dart';
 
 class AddBook extends StatefulWidget {
   AddBook({Key key}) : super(key: key);
@@ -100,40 +100,7 @@ class _AddBookState extends State<AddBook> {
       child: ListView.builder(
           itemCount: model.books.length,
           itemBuilder: (context, index) {
-            return Card(
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    child: Image.network(model.books[index].cover),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          model.books[index].bookTitle,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "by ${model.books[index].authors[0]}",
-                          style: TextStyle(fontSize: 12),
-                        ),
-                        Text(
-                          "First Published in ${model.books[index].publishDate}",
-                          style: TextStyle(fontSize: 12),
-                        ),
-                        Text(
-                          "${model.books[index].numberOfPages} Pages",
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            );
+            return BookCardItem(model: model, index: index);
           }),
     );
   }
