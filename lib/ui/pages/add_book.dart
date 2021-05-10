@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-import 'package:share_a_book/ui/pages/add_book_detail.dart';
 import 'package:share_a_book/ui/widgets/book_card_item.dart';
 
 class AddBook extends StatefulWidget {
@@ -95,10 +94,10 @@ class _AddBookState extends State<AddBook> {
                 )));
   }
 
-  Expanded bookListView(AddBookViewModel) {
+  Expanded bookListView(addBookViewModel) {
     return Expanded(
       child: ListView.builder(
-          itemCount: model.books.length,
+          itemCount: addBookViewModel.books.length,
           itemBuilder: (context, index) {
             return BookCardItem(model: model, index: index);
           }),
