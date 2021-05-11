@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_a_book/ui/pages/about_us.dart';
 import 'package:share_a_book/ui/pages/get_started.dart';
 
 void main() {
