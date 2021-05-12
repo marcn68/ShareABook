@@ -78,24 +78,6 @@ class DrawerWidget extends StatelessWidget {
                 ListTile(
                   dense: true,
                   leading: Icon(
-                    Icons.account_circle,
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    'My Profile',
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-                  onTap: () {
-                    // Navigator.pop(context);
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => SocialPage()));
-                  },
-                ),
-                ListTile(
-                  dense: true,
-                  leading: Icon(
                     Icons.library_books,
                     color: Colors.black,
                   ),
@@ -124,6 +106,24 @@ class DrawerWidget extends StatelessWidget {
                     ),
                   ),
                   onTap: () {},
+                ),
+                ListTile(
+                  dense: true,
+                  leading: Icon(
+                    Icons.lock,
+                    color: Colors.black,
+                  ),
+                  title: Text(
+                    'Change Your Password',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  onTap: () {
+                    // Navigator.pop(context);
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => SocialPage()));
+                  },
                 ),
                 ListTile(
                   dense: true,
