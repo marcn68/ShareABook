@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 
@@ -19,7 +20,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff2395C8),
+        backgroundColor: Constants.PRIMARY_BLUE,
         body: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,26 +40,29 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                       color: Colors.transparent,
                       width: 8,
                     ),
-                    color: Color(0xffDFEEF5),
+                    color: Constants.SECONDARY_BLUE,
                     borderRadius:
-                    BorderRadius.vertical(top: Radius.circular(50.0)),
+                        BorderRadius.vertical(top: Radius.circular(50.0)),
                   ),
                   padding: const EdgeInsets.all(32),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CustomLabel(text: "Get ready to lending and renting book in a creative way!", fontSize: 18.0),
+                      CustomLabel(
+                          text:
+                              "Get ready to lending and renting book in a creative way!",
+                          fontSize: 18.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                           height: 42.0,
-                          child: CustomButton(text: "GET STARTED", onPressed: navigateToLogin)
-                      ),
+                          child: CustomButton(
+                              text: "GET STARTED", onPressed: navigateToLogin)),
                     ],
                   ),
                 ),
               ]),
         ) // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        );
   }
 
   /*Functions*/
