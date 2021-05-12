@@ -4,7 +4,7 @@ class Book {
   String isbn;
   String bookTitle;
   List<String> authors;
-  int numberOfPages;
+  String numberOfPages;
   List<String> publishers;
   String publishDate;
   List<String> subjects;
