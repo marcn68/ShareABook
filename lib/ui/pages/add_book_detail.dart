@@ -152,8 +152,8 @@ class _AddBookDetailState extends State<AddBookDetail> {
                       style: TextStyle(color: Colors.black, fontSize: 14),
                     ),
                     onPressed: () {
-                      model.sendBookInfo(
-                          widget.book, _priceController.toString(), _condition);
+                      model.sendBookInfo(widget.book,
+                          _priceController.text.toString(), _condition);
                     },
                   ),
                 ),
