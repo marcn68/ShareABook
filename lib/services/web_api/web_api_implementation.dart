@@ -35,7 +35,12 @@ class WebApiImplementation implements WebApi {
       authors.add(author["name"].toString());
     }
 
-    int numberOfPages = jsonObject[this.isbn]["number_of_pages"];
+    String numberOfPages;
+    if (jsonObject[this.isbn]["number_of_pages"] == null) {
+      numberOfPages = "No data found";
+    } else {
+      numberOfPages = jsonObject[this.isbn]["number_of_pages"];
+    }
 
     List<String> publishers = [];
     if (jsonObject[this.isbn]["publishers"] != null) {
