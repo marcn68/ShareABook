@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/services/authentication/auth_service.dart';
+import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/pages/register.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
@@ -14,6 +16,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  AuthService _authService = serviceLocator<AuthService>();
+
   @override
   void initState() {
     super.initState();
@@ -63,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               text: "Login with Google",
                               provider: ButtonType.google,
                               isMini: false,
-                              onPressed: () {})),
+                              onPressed: _authService.signInWithGoogle)),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 45.0,
@@ -71,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               text: "Login with Facebook",
                               provider: ButtonType.facebook,
                               isMini: false,
-                              onPressed: () {})),
+                              onPressed: _authService.signInWithFacebook)),
                       CustomLabel(
                           text: "Don't have an account?", fontSize: 16.0),
                       Container(
