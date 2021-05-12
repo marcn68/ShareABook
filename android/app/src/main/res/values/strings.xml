@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ShareABook</string>
+    <string name="facebook_app_id">1135950860252800</string>
+    <string name="fb_login_protocol_scheme">fb1135950860252800</string>
+</resources>
