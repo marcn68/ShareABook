@@ -7,7 +7,9 @@ class UserUtils {
         ? AppUser(
             uid: user.uid,
             email: user.email,
-            fullName: user.displayName ?? "New User")
+            fullName: user.displayName ?? "New User",
+            provider: user.providerData[0].providerId.split('.')[0],
+          )
         : null;
   }
 }
