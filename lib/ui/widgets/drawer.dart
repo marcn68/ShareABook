@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:share_a_book/business_logic/models/user.dart';
+import 'package:share_a_book/services/authentication/auth_service.dart';
+import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 
 class DrawerWidget extends StatelessWidget {
+  final AuthService _authService = serviceLocator<AuthService>();
+
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<AppUser>(context);
+
     return Container(
       color: Constants.SAFEAREA_COLOR,
       child: SafeArea(
@@ -28,7 +36,7 @@ class DrawerWidget extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        "Username",
+                        user.fullName,
                         style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -38,7 +46,7 @@ class DrawerWidget extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        "example@gmail.com",
+                        user.email,
                         style: TextStyle(
                           fontSize: 14.0,
                         ),
@@ -143,7 +151,7 @@ class DrawerWidget extends StatelessWidget {
                       fontSize: 14,
                     ),
                   ),
-                  onTap: () {},
+                  onTap: _authService.signOut,
                 ),
               ],
             ),
