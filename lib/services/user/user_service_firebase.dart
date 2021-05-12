@@ -5,14 +5,22 @@ class UserServiceFirebase implements UserService {
   final _auth = FirebaseAuth.instance;
 
   @override
-  Future changePassword({String newPassword}) async {
+  Future changePassword({String newPassword, String oldPassword}) async {
     final user = _auth.currentUser;
+    await reAuthenticateUser(
+      user: user,
+      password: oldPassword,
+    );
     await user.updatePassword(newPassword);
   }
 
   @override
-  Future deleteUser() async {
+  Future deleteUser({String password}) async {
     final user = _auth.currentUser;
+    await reAuthenticateUser(
+      user: user,
+      password: password,
+    );
     user.delete();
   }
 
@@ -20,5 +28,14 @@ class UserServiceFirebase implements UserService {
   Future updateUser({String userImage, String fullName}) async {
     final user = _auth.currentUser;
     await user.updateProfile(displayName: fullName, photoURL: userImage);
+  }
+
+  Future reAuthenticateUser({User user, String password}) async {
+    await user.reauthenticateWithCredential(
+      EmailAuthProvider.credential(
+        email: _auth.currentUser.email,
+        password: password,
+      ),
+    );
   }
 }
