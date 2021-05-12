@@ -2,10 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
+import 'package:share_a_book/business_logic/utils/prefs_utils.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/pages/add_book.dart';
+import 'package:share_a_book/ui/pages/get_started.dart';
 import 'package:share_a_book/ui/pages/login.dart';
 import 'package:share_a_book/ui/widgets/drawer.dart';
 
@@ -13,11 +15,16 @@ void main() async {
   setupServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  final bool isFirstTime = await PrefsUtils.isFirstTime();
+  runApp(MyApp(
+    isFirstTime: isFirstTime,
+  ));
 }
 
 class MyApp extends StatelessWidget {
   AuthService _authService = serviceLocator<AuthService>();
+  MyApp({this.isFirstTime});
+  final bool isFirstTime;
 
   // This widget is the root of your application.
   @override
@@ -25,22 +32,38 @@ class MyApp extends StatelessWidget {
     return StreamProvider.value(
       initialData: null,
       value: _authService.currentUser,
-      child: MainPage(),
+      child: MainPage(
+        isFirstTime: isFirstTime,
+      ),
     );
   }
 }
 
 class MainPage extends StatelessWidget {
+  MainPage({this.isFirstTime});
+  final bool isFirstTime;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'ShareABook',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: isFirstTime ? GetStartedScreen() : AuthenticateWrapper());
+  }
+}
+
+class AuthenticateWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppUser user = Provider.of<AppUser>(context);
-
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: user == null ? LoginScreen() : MyHomePage(title: 'Testing'),
+    return Container(
+      child: user == null
+          ? LoginScreen()
+          : MyHomePage(
+              title: 'Home Page',
+            ),
     );
   }
 }
