@@ -11,11 +11,12 @@ class BackendApiImplementation implements BackendApi {
 
   @override
   Future<bool> createBook(Book book) async {
+    final bookJson = book.toJson();
     final response = await http.post(
       Uri.https(_host, _path),
       headers: _headers,
       body: jsonEncode(<String, dynamic>{
-        'book': book.toJson(),
+        'book': bookJson,
       }),
     );
 
