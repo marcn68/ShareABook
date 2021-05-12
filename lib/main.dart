@@ -1,24 +1,46 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:share_a_book/business_logic/models/user.dart';
+import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/pages/add_book.dart';
+import 'package:share_a_book/ui/pages/login.dart';
 import 'package:share_a_book/ui/widgets/drawer.dart';
 
-void main() {
+void main() async {
   setupServiceLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  AuthService _authService = serviceLocator<AuthService>();
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    return StreamProvider.value(
+      initialData: null,
+      value: _authService.currentUser,
+      child: MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final AppUser user = Provider.of<AppUser>(context);
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Testing'),
+      home: user == null ? LoginScreen() : MyHomePage(title: 'Testing'),
     );
   }
 }
