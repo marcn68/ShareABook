@@ -1,12 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
+import 'package:path/path.dart' as path;
 
-class DrawerWidget extends StatelessWidget {
+class DrawerWidget extends StatefulWidget {
+  @override
+  _DrawerWidgetState createState() => _DrawerWidgetState();
+}
+
+class _DrawerWidgetState extends State<DrawerWidget> {
   final AuthService _authService = serviceLocator<AuthService>();
+
+  File _pickedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +35,36 @@ class DrawerWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(
-                          Icons.person,
-                          size: 40,
+                      GestureDetector(
+                        onTap: () {
+                          _showPicker(context);
+                        },
+                        child: CircleAvatar(
+                          radius: 40,
+                          backgroundColor: Colors.white,
+                          child: _pickedImage != null
+                              ? ClipOval(
+                                  //borderRadius: BorderRadius.circular(50),
+                                  child: Image.file(
+                                    _pickedImage,
+                                    width: 200,
+                                    height: 100,
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.circular(50)),
+                                  width: 100,
+                                  height: 100,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: Colors.grey[800],
+                                    size: 50,
+                                  ),
+                                ),
                         ),
-                        radius: 40,
                       ),
                       SizedBox(
                         height: 10,
@@ -159,5 +193,72 @@ class DrawerWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  _imgFromCamera() async {
+    // ignore: deprecated_member_use
+    PickedFile image = await ImagePicker()
+        .getImage(source: ImageSource.camera, imageQuality: 50);
+
+    File _image = File(image.path);
+    // String dir = path.dirname(image.path);
+    // String newPath = path.join(dir, widget.contact.id.toString() + '.jpg');
+    // File file = new File(newPath);
+    // if (file.existsSync()) {
+    //   file.deleteSync();
+    // }
+    // image.renameSync(newPath);
+
+    setState(() {
+      _pickedImage = _image;
+    });
+  }
+
+  _imgFromGallery() async {
+    // ignore: deprecated_member_use
+    PickedFile image = await ImagePicker()
+        .getImage(source: ImageSource.gallery, imageQuality: 50);
+
+    File _image = File(image.path);
+
+    //String dir = path.dirname(image.path);
+    // String newPath = path.join(dir, widget.contact.id.toString() + '.jpg');
+    // image.renameSync(newPath);
+
+    // File file = new File(newPath);
+
+    setState(() {
+      _pickedImage = _image;
+    });
   }
 }
