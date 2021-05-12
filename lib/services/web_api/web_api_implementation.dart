@@ -19,8 +19,6 @@ class WebApiImplementation implements WebApi {
     var response = await http.get(uri, headers: _headers);
     final jsonObject = json.decode(response.body);
     _books = _createBookList(jsonObject);
-    // print(jsonObject["ISBN:9781408855898"]["title"]);
-
     return _books;
   }
 
@@ -39,7 +37,7 @@ class WebApiImplementation implements WebApi {
     if (jsonObject[this.isbn]["number_of_pages"] == null) {
       numberOfPages = "No data found";
     } else {
-      numberOfPages = jsonObject[this.isbn]["number_of_pages"];
+      numberOfPages = jsonObject[this.isbn]["number_of_pages"].toString();
     }
 
     List<String> publishers = [];
