@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_a_book/shared/constants.dart';
 
 class CustomButton extends StatelessWidget {
   CustomButton({this.text, this.onPressed});
@@ -13,7 +14,7 @@ class CustomButton extends StatelessWidget {
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                side: BorderSide(color: Color(0xff2395C8)))),
+                side: BorderSide(color: Constants.PRIMARY_BLUE))),
       ),
       onPressed: onPressed,
       child: Padding(
