@@ -44,7 +44,7 @@ class MainPage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: /*user == null ? LoginScreen() : */MyHomePage(title: 'Testing'),
+      home: user == null ? LoginScreen() : MyHomePage(title: 'Testing'),
     );
   }
 }
