@@ -38,4 +38,15 @@ class BackendApiImplementation implements BackendApi {
     return _books;
   }
 
+  @override
+  Future<List<Book>> getLoggedInUserBooks(userId) async {
+    /*To change*/
+    var queryParameters = {'id': userId};
+    final uri = Uri.https(_host, _path, queryParameters);
+    var response = await http.get(uri, headers: _headers);
+    final jsonObject = json.decode(response.body);
+    _books = jsonObject;
+    return _books;
+  }
+
 }
