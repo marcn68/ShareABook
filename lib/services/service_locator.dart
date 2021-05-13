@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
+import 'package:share_a_book/business_logic/view_models/home_viewmodel.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/authentication/auth_service_firebase.dart';
 import 'package:share_a_book/services/book_add/book_add_service.dart';
@@ -28,4 +29,6 @@ void setupServiceLocator() {
   //view models registrations
   serviceLocator.registerFactory<AddBookViewModel>(() => AddBookViewModel());
   //serviceLocator.registerFactory<AddBookViewModel>(() => AddBookViewModel());
+
+  serviceLocator.registerFactory<HomeViewModel>(() => HomeViewModel());
 }

@@ -9,7 +9,7 @@ class BookCardItem extends StatelessWidget {
     this.index,
   }) : super(key: key);
 
-  final AddBookViewModel model;
+  final dynamic model;
   final int index;
 
   @override
