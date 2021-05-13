@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/business_logic/view_models/register_viewmodel.dart';
+import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
 import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
@@ -15,6 +17,12 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
+  RegisterViewModel model = serviceLocator<RegisterViewModel>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -52,16 +60,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: <Widget>[
                       CustomLabel(text: "Register", fontSize: 20.0),
                       SizedBox(height: 10),
-                      CustomInput(label: "Fullname", verticalPadding: 2),
-                      CustomInput(label: "Username", verticalPadding: 2),
-                      CustomInput(label: "Email", verticalPadding: 2),
-                      CustomInput(label: "Password", verticalPadding: 2),
-                      CustomInput(label: "Phone", verticalPadding: 2),
+                      CustomInput(label: "Email", verticalPadding: 10, controller: _emailController),
+                      CustomInput(label: "Password", verticalPadding: 10, controller: _passwordController),
+                      CustomInput(label: "Confirm Password", verticalPadding: 10, controller: _confirmPasswordController),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                           height: 42.0,
                           child:
-                              CustomButton(text: "Register", onPressed: () {})),
+                              CustomButton(text: "Register", onPressed: () {model.signUpWithEmailAndPassword(_emailController.text, _passwordController.text, _confirmPasswordController.text, context);})),
                       CustomLabel(text: "Or register with", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -73,12 +79,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   text: "",
                                   provider: ButtonType.google,
                                   isMini: true,
-                                  onPressed: () {}),
+                                  onPressed: () {model.signUpWithGoogle(context);}),
                               CustomSignInButton(
                                   text: "",
                                   provider: ButtonType.facebook,
                                   isMini: true,
-                                  onPressed: () {})
+                                  onPressed: () {model.signUpWithFacebook(context);})
                             ],
                           )),
                       Divider(
@@ -95,7 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   fontSize: 16.0),
                               SizedBox(width: 20),
                               CustomButton(
-                                  text: "Login", onPressed: navigateToLogin)
+                                  text: "Login", onPressed: (){model.navigateToLogin(context);})
                             ],
                           )),
                     ],
@@ -104,12 +110,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ]),
         ) // This trailing comma makes auto-formatting nicer for build methods.
         );
-  }
-
-  void navigateToLogin() async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/home_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/login_viewmodel.dart';
+import 'package:share_a_book/business_logic/view_models/register_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/virtual_bookshelf_viewmodel.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/authentication/auth_service_firebase.dart';
@@ -38,5 +39,7 @@ void setupServiceLocator() {
   serviceLocator.registerFactory<VirtualBookshelfViewModel>(() => VirtualBookshelfViewModel());
 
   serviceLocator.registerFactory<LoginViewModel>(() => LoginViewModel());
+
+  serviceLocator.registerFactory<RegisterViewModel>(() => RegisterViewModel());
 
 }
