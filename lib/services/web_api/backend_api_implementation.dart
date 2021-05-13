@@ -8,6 +8,7 @@ class BackendApiImplementation implements BackendApi {
   final _host = "openlibrary.org";
   final _path = "api/books";
   final Map<String, String> _headers = {'Accept': 'application/json'};
+  List<Book> _books;
 
   @override
   Future<bool> createBook(Book book) async {
@@ -26,4 +27,26 @@ class BackendApiImplementation implements BackendApi {
       return false;
     }
   }
+
+  @override
+  Future<List<Book>> getBooksOfTheWeek() async {
+    /*To change*/
+    final uri = Uri.https(_host, _path + '/booksOfTheWeek');
+    var response = await http.get(uri, headers: _headers);
+    final jsonObject = json.decode(response.body);
+    _books = jsonObject;
+    return _books;
+  }
+
+  @override
+  Future<List<Book>> getLoggedInUserBooks(userId) async {
+    /*To change*/
+    var queryParameters = {'id': userId};
+    final uri = Uri.https(_host, _path, queryParameters);
+    var response = await http.get(uri, headers: _headers);
+    final jsonObject = json.decode(response.body);
+    _books = jsonObject;
+    return _books;
+  }
+
 }

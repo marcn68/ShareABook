@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/ui/pages/about_us.dart';
+import 'package:share_a_book/ui/pages/get_started.dart';
+import 'package:share_a_book/ui/pages/home.dart';
 import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/utils/prefs_utils.dart';
@@ -9,6 +12,7 @@ import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/pages/add_book.dart';
 import 'package:share_a_book/ui/pages/get_started.dart';
 import 'package:share_a_book/ui/pages/login.dart';
+import 'package:share_a_book/ui/pages/virtual_bookshelf.dart';
 import 'package:share_a_book/ui/widgets/drawer.dart';
 
 void main() async {
@@ -89,7 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: <Widget>[
+
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
