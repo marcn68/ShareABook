@@ -22,7 +22,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  AuthService _authService = serviceLocator<AuthService>();
+  final AuthService _authService = serviceLocator<AuthService>();
   MyApp({this.isFirstTime});
   final bool isFirstTime;
 
@@ -46,11 +46,12 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'ShareABook',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: isFirstTime ? GetStartedScreen() : AuthenticateWrapper());
+      title: 'ShareABook',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: isFirstTime ? GetStartedScreen() : AuthenticateWrapper(),
+    );
   }
 }
 
@@ -98,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         tooltip: 'Add Book',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
