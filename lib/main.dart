@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/ui/pages/about_us.dart';
+import 'package:share_a_book/ui/pages/get_started.dart';
+import 'package:share_a_book/ui/pages/home.dart';
 import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
@@ -65,7 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: <Widget>[
+            HomeScreen()
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
