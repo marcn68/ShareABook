@@ -10,6 +10,7 @@ import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/pages/add_book.dart';
 import 'package:share_a_book/ui/pages/login.dart';
+import 'package:share_a_book/ui/pages/virtual_bookshelf.dart';
 import 'package:share_a_book/ui/widgets/drawer.dart';
 
 void main() async {
@@ -69,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            HomeScreen()
+
           ],
         ),
       ),

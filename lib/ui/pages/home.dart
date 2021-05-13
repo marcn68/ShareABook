@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: Center(
                       child: Column(children: <Widget>[
-                        SizedBox(height: 50),
+                        SizedBox(height: 24),
                         CustomLabel(text: "Trending Genres", fontSize: 22.0),
                         SizedBox(height: 24),
                         SizedBox(
