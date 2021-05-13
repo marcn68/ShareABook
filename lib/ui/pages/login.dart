@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
+import 'package:share_a_book/ui/pages/home.dart';
 import 'package:share_a_book/ui/pages/register.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
 import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
@@ -17,6 +20,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   AuthService _authService = serviceLocator<AuthService>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -53,12 +58,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: <Widget>[
                       CustomLabel(text: "Login", fontSize: 20.0),
-                      CustomInput(label: "Email", verticalPadding: 16),
-                      CustomInput(label: "Password", verticalPadding: 16),
+                      CustomInput(label: "Email", verticalPadding: 16, controller: this._emailController),
+                      CustomInput(label: "Password", verticalPadding: 16, controller: this._passwordController),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 42.0,
-                          child: CustomButton(text: "Login", onPressed: () {})),
+                          child: CustomButton(text: "Login", onPressed: login)),
                       CustomLabel(text: "Or login with", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -96,5 +101,15 @@ class _LoginScreenState extends State<LoginScreen> {
       context,
       MaterialPageRoute(builder: (context) => RegisterScreen()),
     );
+  }
+
+  void login() async {
+     this._authService.signInWithEmailAndPassword(this._emailController.text, this._passwordController.text);
+     if(Provider.of<AppUser>(context) != null){
+       await Navigator.push(
+         context,
+         MaterialPageRoute(builder: (context) => HomeScreen()),
+       );
+     }
   }
 }
