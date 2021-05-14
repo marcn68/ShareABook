@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:share_a_book/services/authentication/auth_service.dart';
+import 'package:share_a_book/business_logic/view_models/login_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-import 'package:share_a_book/ui/pages/register.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
 import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
 import 'package:share_a_book/ui/widgets/custom_input.dart';
@@ -16,7 +15,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  AuthService _authService = serviceLocator<AuthService>();
+  LoginViewModel model = serviceLocator<LoginViewModel>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -53,12 +54,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: <Widget>[
                       CustomLabel(text: "Login", fontSize: 20.0),
-                      CustomInput(label: "Email", verticalPadding: 16),
-                      CustomInput(label: "Password", verticalPadding: 16),
+                      CustomInput(label: "Email", verticalPadding: 16, controller: this._emailController),
+                      CustomInput(label: "Password", verticalPadding: 16, controller: this._passwordController),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 42.0,
-                          child: CustomButton(text: "Login", onPressed: () {})),
+                          child: CustomButton(text: "Login", onPressed: (){model.signInWithEmailAndPassword(_emailController, _passwordController, context);})),
                       CustomLabel(text: "Or login with", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -67,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               text: "Login with Google",
                               provider: ButtonType.google,
                               isMini: false,
-                              onPressed: _authService.signInWithGoogle)),
+                              onPressed:  () {model.signInWithGoogle(context);})),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 45.0,
@@ -75,26 +76,19 @@ class _LoginScreenState extends State<LoginScreen> {
                               text: "Login with Facebook",
                               provider: ButtonType.facebook,
                               isMini: false,
-                              onPressed: _authService.signInWithFacebook)),
+                              onPressed:  () {model.signInWithFacebook(context);})),
                       CustomLabel(
                           text: "Don't have an account?", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           height: 42.0,
                           child: CustomButton(
-                              text: "Register", onPressed: navigateToRegister)),
+                              text: "Register", onPressed: () {model.navigateToRegister(context);})),
                     ],
                   ),
                 ),
               ]),
         ) // This trailing comma makes auto-formatting nicer for build methods.
         );
-  }
-
-  void navigateToRegister() async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => RegisterScreen()),
-    );
   }
 }
