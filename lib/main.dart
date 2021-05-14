@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/ui/pages/get_started.dart';
 import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
@@ -10,6 +11,7 @@ import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/pages/add_book.dart';
 import 'package:share_a_book/ui/pages/login.dart';
 import 'package:share_a_book/ui/widgets/drawer.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 void main() async {
   setupServiceLocator();
@@ -50,6 +52,8 @@ class MainPage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      navigatorKey: StackedService.navigatorKey,
+      onGenerateRoute: StackedRouter().onGenerateRoute,
       home: isFirstTime ? GetStartedScreen() : AuthenticateWrapper(),
     );
   }
@@ -59,13 +63,11 @@ class AuthenticateWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppUser user = Provider.of<AppUser>(context);
-    return Container(
-      child: user == null
-          ? LoginScreen()
-          : MyHomePage(
-              title: 'Home Page',
-            ),
-    );
+    return user == null
+        ? LoginScreen()
+        : MyHomePage(
+            title: 'Home Page',
+          );
   }
 }
 
