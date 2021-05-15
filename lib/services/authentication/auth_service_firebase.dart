@@ -27,9 +27,8 @@ class AuthServiceFirebase implements AuthService {
         email: email,
         password: password,
       );
-      User user = userCredential.user;
 
-      return UserUtils.userFromFirebaseUser(user);
+      return userCredential;
     } catch (e) {
       print(e.toString());
       return null;
@@ -43,9 +42,8 @@ class AuthServiceFirebase implements AuthService {
         email: email,
         password: password,
       );
-      User user = userCredential.user;
 
-      return UserUtils.userFromFirebaseUser(user);
+      return userCredential;
     } catch (e) {
       print(e.toString());
       return null;
@@ -63,8 +61,7 @@ class AuthServiceFirebase implements AuthService {
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
 
-      User user = userCredential.user;
-      return UserUtils.userFromFirebaseUser(user);
+      return userCredential;
     } catch (e) {
       print(e.toString());
       return null;
@@ -87,9 +84,7 @@ class AuthServiceFirebase implements AuthService {
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
 
-      User user = userCredential.user;
-
-      return UserUtils.userFromFirebaseUser(user);
+      return userCredential;
     } catch (e) {
       print(e.toString());
       return null;
