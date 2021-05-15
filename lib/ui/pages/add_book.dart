@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-import 'package:share_a_book/ui/widgets/book_card_item.dart';
 import 'package:share_a_book/ui/widgets/book_list_view.dart';
 
 class AddBook extends StatefulWidget {
@@ -18,7 +17,6 @@ class _AddBookState extends State<AddBook> {
 
   @override
   void initState() {
-    model.searchController = TextEditingController();
     super.initState();
   }
 
@@ -56,7 +54,6 @@ class _AddBookState extends State<AddBook> {
                             Expanded(
                               child: TextField(
                                   style: TextStyle(fontSize: 14.0),
-                                  //controller: model.searchController,
                                   decoration: InputDecoration(
                                       prefixIcon: Padding(
                                         padding:
