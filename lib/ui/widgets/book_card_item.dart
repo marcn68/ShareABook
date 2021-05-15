@@ -9,12 +9,10 @@ import 'package:stacked_services/stacked_services.dart';
 class BookCardItem extends StatelessWidget {
   const BookCardItem({
     Key key,
-    this.books,
-    this.index,
+    this.book,
   }) : super(key: key);
 
-  final List<Book> books;
-  final int index;
+  final Book book;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,7 @@ class BookCardItem extends StatelessWidget {
       onTap: () async {
         await serviceLocator<NavigationService>().navigateTo(
             Routes.addBookDetail,
-            arguments: AddBookDetailArguments(book: books[index]));
+            arguments: AddBookDetailArguments(book: book));
         // await Navigator.push(
         //   context,
         //   MaterialPageRoute(
@@ -36,7 +34,7 @@ class BookCardItem extends StatelessWidget {
               width: 100,
               height: 150,
               child: Image.network(
-                books[index].cover,
+                book.cover,
                 scale: 1.20,
               ),
             ),
@@ -46,19 +44,19 @@ class BookCardItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    books[index].bookTitle,
+                    book.bookTitle,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "by ${books[index].authors[0]}",
+                    "by ${book.authors[0]}",
                     style: TextStyle(fontSize: 12),
                   ),
                   Text(
-                    "First Published in ${books[index].publishDate}",
+                    "First Published in ${book.publishDate}",
                     style: TextStyle(fontSize: 12),
                   ),
                   Text(
-                    "${books[index].numberOfPages} Pages",
+                    "${book.numberOfPages} Pages",
                     style: TextStyle(fontSize: 12),
                   ),
                 ],

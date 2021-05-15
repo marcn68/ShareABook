@@ -87,6 +87,18 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         backgroundColor: Constants.PRIMARY_BLUE,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
+              size: 24,
+            ),
+            onPressed: () {
+              serviceLocator<NavigationService>().navigateTo(Routes.findBook);
+            },
+          )
+        ],
       ),
       body: Center(
         child: Column(

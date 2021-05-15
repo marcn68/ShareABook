@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/home_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/ui/widgets/book_card_item.dart';
+import 'package:share_a_book/ui/widgets/book_list_view.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 import 'package:share_a_book/ui/widgets/trending_genres_item.dart';
 
@@ -48,21 +49,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(height: 24),
                         CustomLabel(text: "Book of the Week ", fontSize: 22.0),
                         SizedBox(height: 24),
-                        bookOfTheWeekListView(bookOfTheWeekModel)
+                        BookListView(books: bookOfTheWeekModel.books)
                       ]),
                     )) // This trailing comma makes auto-formatting nicer for build methods.
                 )));
   }
 
-  Expanded bookOfTheWeekListView(bookOfTheWeekViewModel) {
-    return Expanded(
-      child: ListView.builder(
-          itemCount: bookOfTheWeekViewModel.books.length,
-          itemBuilder: (context, index) {
-            return BookCardItem(books: bookOfTheWeekModel.books, index: index);
-          }),
-    );
-  }
+  // Expanded bookOfTheWeekListView(bookOfTheWeekViewModel) {
+  //   return Expanded(
+  //     child: ListView.builder(
+  //         itemCount: bookOfTheWeekViewModel.books.length,
+  //         itemBuilder: (context, index) {
+  //           return BookCardItem(books: bookOfTheWeekModel.books, index: index);
+  //         }),
+  //   );
+  // }
 
   ListView trendingGenresView(trendingGenres) {
     return ListView.builder(

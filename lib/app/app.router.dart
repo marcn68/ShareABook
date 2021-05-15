@@ -13,6 +13,7 @@ import '../business_logic/models/book.dart';
 import '../main.dart';
 import '../ui/pages/add_book_detail.dart';
 import '../ui/pages/change_password.dart';
+import '../ui/pages/find_book.dart';
 
 class Routes {
   static const String myApp = '/';
@@ -20,12 +21,14 @@ class Routes {
   static const String authenticateWrapper = '/authenticate-wrapper';
   static const String changePassword = '/change-password';
   static const String addBookDetail = '/add-book-detail';
+  static const String findBook = '/find-book';
   static const all = <String>{
     myApp,
     myHomePage,
     authenticateWrapper,
     changePassword,
     addBookDetail,
+    findBook,
   };
 }
 
@@ -38,6 +41,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.authenticateWrapper, page: AuthenticateWrapper),
     RouteDef(Routes.changePassword, page: ChangePassword),
     RouteDef(Routes.addBookDetail, page: AddBookDetail),
+    RouteDef(Routes.findBook, page: FindBook),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -84,6 +88,12 @@ class StackedRouter extends RouterBase {
           key: args.key,
           book: args.book,
         ),
+        settings: data,
+      );
+    },
+    FindBook: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => FindBook(),
         settings: data,
       );
     },

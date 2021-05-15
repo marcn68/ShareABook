@@ -4,6 +4,7 @@ import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart'
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/book_card_item.dart';
+import 'package:share_a_book/ui/widgets/book_list_view.dart';
 
 class AddBook extends StatefulWidget {
   AddBook({Key key}) : super(key: key);
@@ -86,20 +87,20 @@ class _AddBookState extends State<AddBook> {
                         SizedBox(
                           height: 30.0,
                         ),
-                        bookListView(model),
+                        BookListView(books: model.books),
                       ],
                     ),
                   ),
                 )));
   }
 
-  Expanded bookListView(addBookViewModel) {
-    return Expanded(
-      child: ListView.builder(
-          itemCount: addBookViewModel.books.length,
-          itemBuilder: (context, index) {
-            return BookCardItem(books: model.books, index: index);
-          }),
-    );
-  }
+  // Expanded bookListView(addBookViewModel) {
+  //   return Expanded(
+  //     child: ListView.builder(
+  //         itemCount: addBookViewModel.books.length,
+  //         itemBuilder: (context, index) {
+  //           return BookCardItem(books: model.books, index: index);
+  //         }),
+  //   );
+  // }
 }
