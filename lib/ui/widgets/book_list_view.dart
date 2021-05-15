@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:share_a_book/business_logic/models/book.dart';
-import 'package:share_a_book/business_logic/view_models/find_book_viewmodel.dart';
 
 import 'book_card_item.dart';
 

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/business_logic/models/book.dart';
-import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
-import 'package:share_a_book/ui/pages/add_book_detail.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class BookCardItem extends StatelessWidget {

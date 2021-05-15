@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/view_models/virtual_bookshelf_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
-import 'package:share_a_book/ui/widgets/book_card_item.dart';
 import 'package:share_a_book/ui/widgets/book_list_view.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 
