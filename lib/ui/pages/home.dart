@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   HomeViewModel bookOfTheWeekModel = serviceLocator<HomeViewModel>();
   List<String> trendingGenres = [
-    "Fantazy",
+    "Fantasy",
     "Romance",
     "Comedy",
     "Litterary",
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ListView.builder(
           itemCount: bookOfTheWeekViewModel.books.length,
           itemBuilder: (context, index) {
-            return BookCardItem(model: bookOfTheWeekModel, index: index);
+            return BookCardItem(books: bookOfTheWeekModel.books, index: index);
           }),
     );
   }

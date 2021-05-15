@@ -2,7 +2,10 @@ import 'package:share_a_book/business_logic/models/user.dart';
 
 abstract class AuthService {
   // get user stream
-  Stream<AppUser> get currentUser;
+  Stream<AppUser> get currentUserStream;
+
+  // get logged in user
+  AppUser get currentUser;
 
   // register with email and password
   Future registerWithEmailAndPassword(String email, String password);

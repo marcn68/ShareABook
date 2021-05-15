@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
+import 'package:share_a_book/business_logic/view_models/change_password_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/home_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/login_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/virtual_bookshelf_viewmodel.dart';
@@ -41,4 +42,6 @@ void setupServiceLocator() {
       () => VirtualBookshelfViewModel());
 
   serviceLocator.registerFactory<LoginViewModel>(() => LoginViewModel());
+  serviceLocator.registerFactory<ChangePasswordViewModel>(
+      () => ChangePasswordViewModel());
 }
