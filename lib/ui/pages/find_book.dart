@@ -68,7 +68,7 @@ class _FindBookState extends State<FindBook> {
                 SizedBox(
                   height: 30.0,
                 ),
-                bookListView(model),
+                bookListView(),
               ],
             ),
           ),
@@ -77,10 +77,10 @@ class _FindBookState extends State<FindBook> {
     );
   }
 
-  Expanded bookListView(addBookViewModel) {
+  Expanded bookListView() {
     return Expanded(
       child: ListView.builder(
-          itemCount: addBookViewModel.books.length,
+          itemCount: model.books.length,
           itemBuilder: (context, index) {
             return BookCardItem(books: model.books, index: index);
           }),
