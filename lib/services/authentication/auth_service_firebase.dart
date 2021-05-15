@@ -10,8 +10,13 @@ class AuthServiceFirebase implements AuthService {
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
 
   @override
-  Stream<AppUser> get currentUser {
+  Stream<AppUser> get currentUserStream {
     return _auth.authStateChanges().map(UserUtils.userFromFirebaseUser);
+  }
+
+  @override
+  AppUser get currentUser {
+    return UserUtils.userFromFirebaseUser(_auth.currentUser);
   }
 
   @override
@@ -22,9 +27,8 @@ class AuthServiceFirebase implements AuthService {
         email: email,
         password: password,
       );
-      User user = userCredential.user;
 
-      return UserUtils.userFromFirebaseUser(user);
+      return userCredential;
     } catch (e) {
       print(e.toString());
       return null;
@@ -38,9 +42,8 @@ class AuthServiceFirebase implements AuthService {
         email: email,
         password: password,
       );
-      User user = userCredential.user;
 
-      return UserUtils.userFromFirebaseUser(user);
+      return userCredential;
     } catch (e) {
       print(e.toString());
       return null;
@@ -58,8 +61,7 @@ class AuthServiceFirebase implements AuthService {
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
 
-      User user = userCredential.user;
-      return UserUtils.userFromFirebaseUser(user);
+      return userCredential;
     } catch (e) {
       print(e.toString());
       return null;
@@ -82,9 +84,7 @@ class AuthServiceFirebase implements AuthService {
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
 
-      User user = userCredential.user;
-
-      return UserUtils.userFromFirebaseUser(user);
+      return userCredential;
     } catch (e) {
       print(e.toString());
       return null;

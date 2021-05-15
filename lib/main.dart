@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider.value(
       initialData: null,
-      value: _authService.currentUser,
+      value: _authService.currentUserStream,
       child: MainPage(
         isFirstTime: isFirstTime,
       ),
