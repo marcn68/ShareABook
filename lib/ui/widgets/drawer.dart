@@ -3,11 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
+import 'package:share_a_book/business_logic/view_models/change_password_viewmodel.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:path/path.dart' as path;
+import 'package:stacked_services/stacked_services.dart';
 
 class DrawerWidget extends StatefulWidget {
   @override
@@ -153,10 +156,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       fontSize: 14,
                     ),
                   ),
-                  onTap: () {
-                    // Navigator.pop(context);
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => SocialPage()));
+                  onTap: () async {
+                    await serviceLocator<NavigationService>()
+                        .navigateTo(Routes.changePassword);
                   },
                 ),
                 ListTile(
