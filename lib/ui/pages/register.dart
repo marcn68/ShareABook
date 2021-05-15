@@ -30,11 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                  child: Icon(
-                    Icons.book_online,
-                    color: Colors.white,
-                    size: 80,
-                  ),
+                  child: Image.asset("assets/logo.png", scale: 2.2),
                 ),
                 Container(
                   height: 559,

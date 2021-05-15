@@ -27,12 +27,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 177, 0, 0),
-                  child: Icon(
-                    Icons.book_online,
-                    color: Colors.white,
-                    size: 150,
-                  ),
+                  padding: EdgeInsets.fromLTRB(0, 90, 0, 0),
+                  child: Image.asset("assets/logo_name.png", scale: 1),
                 ),
                 Container(
                   height: 300,
