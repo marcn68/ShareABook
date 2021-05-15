@@ -18,7 +18,7 @@ class BookListView extends StatelessWidget {
       child: ListView.builder(
           itemCount: books.length,
           itemBuilder: (context, index) {
-            return BookCardItem(books: books, index: index);
+            return BookCardItem(book: books[index]);
           }),
     );
   }

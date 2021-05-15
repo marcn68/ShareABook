@@ -5,6 +5,7 @@ import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/view_models/virtual_bookshelf_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/ui/widgets/book_card_item.dart';
+import 'package:share_a_book/ui/widgets/book_list_view.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 
 class VirtualBookshelfScreen extends StatefulWidget {
@@ -37,20 +38,20 @@ class _VirtualBookshelfScreenState extends State<VirtualBookshelfScreen> {
                         SizedBox(height: 24),
                         CustomLabel(text: "My Books ", fontSize: 22.0),
                         SizedBox(height: 24),
-                        virtualBookshelfListView(virtualBookshelfModel)
+                        BookListView(books: virtualBookshelfModel.books)
                       ]),
                     )) // This trailing comma makes auto-formatting nicer for build methods.
                 )));
   }
 
-  Expanded virtualBookshelfListView(virtualBookshelfViewModel) {
-    return Expanded(
-      child: ListView.builder(
-          itemCount: virtualBookshelfViewModel.books.length,
-          itemBuilder: (context, index) {
-            return BookCardItem(
-                books: virtualBookshelfModel.books, index: index);
-          }),
-    );
-  }
+  // Expanded virtualBookshelfListView(virtualBookshelfViewModel) {
+  //   return Expanded(
+  //     child: ListView.builder(
+  //         itemCount: virtualBookshelfViewModel.books.length,
+  //         itemBuilder: (context, index) {
+  //           return BookCardItem(
+  //               books: virtualBookshelfModel.books, index: index);
+  //         }),
+  //   );
+  // }
 }
