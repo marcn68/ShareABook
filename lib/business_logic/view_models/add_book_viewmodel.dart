@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:share_a_book/business_logic/models/book.dart';
 import 'package:share_a_book/services/book_add/book_add_service.dart';
@@ -6,6 +7,8 @@ import 'package:share_a_book/services/service_locator.dart';
 class AddBookViewModel extends ChangeNotifier {
   final BookAddService _bookAddService = serviceLocator<BookAddService>();
 
+  String isbn;
+  TextEditingController searchController;
   List<Book> _books = [];
 
   List<Book> get books {
@@ -15,7 +18,7 @@ class AddBookViewModel extends ChangeNotifier {
   bool response;
   String msg;
 
-  void getBookInfo(isbn) async {
+  void getBookInfo() async {
     _books = await _bookAddService.getBooksByISBN(isbn);
     notifyListeners();
   }

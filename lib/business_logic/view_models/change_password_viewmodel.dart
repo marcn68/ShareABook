@@ -1,13 +1,31 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:share_a_book/services/service_locator.dart';
+import 'package:share_a_book/services/user/user_service.dart';
 
 class ChangePasswordViewModel extends ChangeNotifier {
-  String oldPass;
-  String newPass;
-  String confirmPass;
+  final UserService _userService = serviceLocator<UserService>();
 
-  void checkOldPass(oldPass) {}
+  // String oldPass;
+  // String newPass;
+  // String confirmPass;
+  String msg;
 
-  void changePassword(newPass) {}
+  TextEditingController oldPassController;
+  TextEditingController newPassController;
+  TextEditingController confirmPassController;
 
-  void checkPassword(newPass, confirmPass) {}
+  void checkOldPass() {}
+
+  String checkPassword() {
+    if (newPassController.text.toString() ==
+        confirmPassController.text.toString()) {
+      _userService.changePassword(
+          newPassword: newPassController.text.toString(),
+          oldPassword: oldPassController.text.toString());
+    } else {
+      msg = "Your passwords do not match";
+      return msg;
+    }
+  }
 }

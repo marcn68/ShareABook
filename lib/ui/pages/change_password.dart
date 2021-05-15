@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/change_password_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-import 'package:share_a_book/ui/widgets/custom_input.dart';
 
 class ChangePassword extends StatefulWidget {
   @override
@@ -13,15 +12,11 @@ class ChangePassword extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePassword> {
   ChangePasswordViewModel model = serviceLocator<ChangePasswordViewModel>();
 
-  TextEditingController _oldPass;
-  TextEditingController _newPass;
-  TextEditingController _confirmPass;
-
   @override
   void initState() {
-    _oldPass = TextEditingController();
-    _newPass = TextEditingController();
-    _confirmPass = TextEditingController();
+    model.oldPassController = TextEditingController();
+    model.newPassController = TextEditingController();
+    model.confirmPassController = TextEditingController();
     super.initState();
   }
 
@@ -47,7 +42,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   Expanded(
                     child: TextField(
                       style: TextStyle(fontSize: 14.0),
-                      controller: _oldPass,
+                      controller: model.oldPassController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -65,7 +60,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   Expanded(
                     child: TextField(
                       style: TextStyle(fontSize: 14.0),
-                      controller: _newPass,
+                      controller: model.newPassController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -83,7 +78,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   Expanded(
                     child: TextField(
                       style: TextStyle(fontSize: 14.0),
-                      controller: _confirmPass,
+                      controller: model.confirmPassController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
