@@ -68,7 +68,7 @@ class _FindBookState extends State<FindBook> {
                 SizedBox(
                   height: 30.0,
                 ),
-                BookListView(model: model),
+                BookListView(books: model.books),
               ],
             ),
           ),
