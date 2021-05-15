@@ -17,7 +17,7 @@ class ChangePasswordViewModel extends ChangeNotifier {
 
   void checkOldPass() {}
 
-  String checkPassword() {
+  void checkPassword() {
     if (newPassController.text.toString() ==
         confirmPassController.text.toString()) {
       _userService.changePassword(
@@ -25,7 +25,7 @@ class ChangePasswordViewModel extends ChangeNotifier {
           oldPassword: oldPassController.text.toString());
     } else {
       msg = "Your passwords do not match";
-      return msg;
     }
+    notifyListeners();
   }
 }
