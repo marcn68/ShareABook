@@ -3,9 +3,9 @@ import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/services/web_api/backend_api.dart';
 import 'package:share_a_book/services/web_api/web_api.dart';
 
-import 'book_add_service.dart';
+import 'book_service.dart';
 
-class BookAddServiceImplementation implements BookAddService {
+class BookServiceImplementation implements BookService {
   WebApi _webApi = serviceLocator<WebApi>();
   BackendApi _backendApi = serviceLocator<BackendApi>();
 
