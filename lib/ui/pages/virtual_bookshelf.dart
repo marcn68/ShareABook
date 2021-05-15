@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
-import 'package:share_a_book/business_logic/view_models/home_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/virtual_bookshelf_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/ui/widgets/book_card_item.dart';
@@ -14,7 +13,8 @@ class VirtualBookshelfScreen extends StatefulWidget {
 }
 
 class _VirtualBookshelfScreenState extends State<VirtualBookshelfScreen> {
-  VirtualBookshelfViewModel virtualBookshelfModel = serviceLocator<VirtualBookshelfViewModel>();
+  VirtualBookshelfViewModel virtualBookshelfModel =
+      serviceLocator<VirtualBookshelfViewModel>();
   @override
   void initState() {
     super.initState();
@@ -40,7 +40,7 @@ class _VirtualBookshelfScreenState extends State<VirtualBookshelfScreen> {
                         virtualBookshelfListView(virtualBookshelfModel)
                       ]),
                     )) // This trailing comma makes auto-formatting nicer for build methods.
-            )));
+                )));
   }
 
   Expanded virtualBookshelfListView(virtualBookshelfViewModel) {
@@ -48,7 +48,8 @@ class _VirtualBookshelfScreenState extends State<VirtualBookshelfScreen> {
       child: ListView.builder(
           itemCount: virtualBookshelfViewModel.books.length,
           itemBuilder: (context, index) {
-            return BookCardItem(model: virtualBookshelfModel, index: index);
+            return BookCardItem(
+                books: virtualBookshelfModel.books, index: index);
           }),
     );
   }
