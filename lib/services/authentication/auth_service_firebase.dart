@@ -10,8 +10,13 @@ class AuthServiceFirebase implements AuthService {
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
 
   @override
-  Stream<AppUser> get currentUser {
+  Stream<AppUser> get currentUserStream {
     return _auth.authStateChanges().map(UserUtils.userFromFirebaseUser);
+  }
+
+  @override
+  AppUser get currentUser {
+    return UserUtils.userFromFirebaseUser(_auth.currentUser);
   }
 
   @override
