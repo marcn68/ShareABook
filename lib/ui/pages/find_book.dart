@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/find_book_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-import 'package:share_a_book/ui/widgets/book_card_item.dart';
+import 'package:share_a_book/ui/widgets/book_list_view.dart';
 
 class FindBook extends StatefulWidget {
   @override
@@ -68,22 +68,12 @@ class _FindBookState extends State<FindBook> {
                 SizedBox(
                   height: 30.0,
                 ),
-                bookListView(),
+                BookListView(model: model),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Expanded bookListView() {
-    return Expanded(
-      child: ListView.builder(
-          itemCount: model.books.length,
-          itemBuilder: (context, index) {
-            return BookCardItem(books: model.books, index: index);
-          }),
     );
   }
 }
