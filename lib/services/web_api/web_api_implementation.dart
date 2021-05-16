@@ -28,7 +28,7 @@ class WebApiImplementation implements WebApi {
     String isbn = jsonObject[this.isbn]["identifiers"]["isbn_10"]
         .toString()
         .substring(1, 10);
-    String bookTitle = jsonObject[this.isbn]["title"].toString();
+    String title = jsonObject[this.isbn]["title"].toString();
 
     List<String> authors = [];
     for (var author in jsonObject[this.isbn]["authors"]) {
@@ -62,14 +62,14 @@ class WebApiImplementation implements WebApi {
 
     List<Book> list = [];
     list.add(Book(
-        isbn = isbn,
-        bookTitle = bookTitle,
-        authors = authors,
-        numberOfPages = numberOfPages,
-        publishers = publishers,
-        publishDate = publishDate,
-        subjects = subjects,
-        cover = cover));
+        isbn: isbn,
+        title: title,
+        authors: authors,
+        numberOfPages: numberOfPages,
+        publishers: publishers,
+        publishDate: publishDate,
+        subjects: subjects,
+        cover: cover));
 
     return list;
   }
