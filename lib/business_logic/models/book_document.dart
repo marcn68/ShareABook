@@ -1,15 +1,38 @@
 import 'package:share_a_book/business_logic/models/user_book.dart';
 
 class BookDocument {
-  String objectID;
   UserBook userBook;
+  String objectID;
 
-  BookDocument({this.objectID, this.userBook});
+  BookDocument({this.userBook, this.objectID});
+
+  BookDocument.fromJson(Map<String, dynamic> json) {
+    userBook = json['userBook'] != null
+        ? new UserBook.fromJson(json['userBook'])
+        : null;
+    objectID = json['objectID'];
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.userBook != null) {
+      data['userBook'] = this.userBook.toJson();
+    }
     data['objectID'] = this.objectID;
-    data['userBook'] = this.userBook;
     return data;
   }
 }
+
+// class BookDocument {
+//   String objectID;
+//   UserBook userBook;
+
+//   BookDocument({this.objectID, this.userBook});
+
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     data['objectID'] = this.objectID;
+//     data['userBook'] = this.userBook;
+//     return data;
+//   }
+// }
