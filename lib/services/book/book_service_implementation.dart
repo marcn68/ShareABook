@@ -27,8 +27,8 @@ class BookServiceImplementation implements BookService {
 
   @override
   Future<List<Book>> popularBooks() async {
-    // books = await _backendApi.getBooksOfTheWeek();
-    // return books;
+    books = await _backendApi.getPopularBooks();
+    return books;
   }
 
   @override
@@ -38,5 +38,8 @@ class BookServiceImplementation implements BookService {
   }
 
   @override
-  Future<List<Book>> userBookList() {}
+  Future<List<Book>> userBookList() async {
+    // books = await _backendApi.getLoggedInUserBooks();
+    // return books;
+  }
 }
