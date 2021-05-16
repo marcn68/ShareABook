@@ -9,12 +9,14 @@ import 'package:share_a_book/business_logic/view_models/virtual_bookshelf_viewmo
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/authentication/auth_service_firebase.dart';
 import 'package:share_a_book/services/book/book_service.dart';
+import 'package:share_a_book/services/database/database_service.dart';
 import 'package:share_a_book/services/user/user_service.dart';
 import 'package:share_a_book/services/user/user_service_firebase.dart';
 import 'package:share_a_book/services/web_api/backend_api.dart';
 import 'package:share_a_book/services/web_api/backend_api_implementation.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'book/book_service_implementation.dart';
+import 'database/database_service_firestore.dart';
 import 'web_api/web_api.dart';
 import 'web_api/web_api_implementation.dart';
 
@@ -33,6 +35,8 @@ void setupServiceLocator() {
       .registerLazySingleton<BackendApi>(() => BackendApiImplementation());
   serviceLocator
       .registerLazySingleton<BookService>(() => BookServiceImplementation());
+  serviceLocator
+      .registerLazySingleton<DatabaseService>(() => DatabaseServiceFirestore());
 
   //view models registrations
   serviceLocator.registerFactory<AddBookViewModel>(() => AddBookViewModel());
