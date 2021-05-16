@@ -1,6 +1,4 @@
 import 'package:share_a_book/business_logic/models/book.dart';
-import 'package:share_a_book/business_logic/models/user_book.dart';
-import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/services/web_api/backend_api.dart';
 import 'package:share_a_book/services/web_api/web_api.dart';
