@@ -16,6 +16,7 @@ import '../ui/pages/add_book_detail.dart';
 import '../ui/pages/book_detail.dart';
 import '../ui/pages/change_password.dart';
 import '../ui/pages/find_book.dart';
+import '../ui/pages/home.dart';
 import '../ui/pages/register.dart';
 class Routes {
 static const String myApp = '/';
@@ -26,8 +27,9 @@ static const String addBookDetail = '/add-book-detail';
 static const String findBook = '/find-book';
 static const String registerScreen = '/register-screen';
 static const String bookDetail = '/book-detail';
+static const String homeScreen = '/home-screen';
 static const all = <String>{
-myApp,myHomePage,authenticateWrapper,changePassword,addBookDetail,findBook,registerScreen,bookDetail,};}
+myApp,myHomePage,authenticateWrapper,changePassword,addBookDetail,findBook,registerScreen,bookDetail,homeScreen,};}
 
 class StackedRouter extends RouterBase {
      @override
@@ -59,6 +61,9 @@ RouteDef(Routes.registerScreen
 RouteDef(Routes.bookDetail
 ,page: BookDetail
 ),
+RouteDef(Routes.homeScreen
+,page: HomeScreen
+),
 ];       @override
        Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
         final _pagesMap = <Type, StackedRouteFactory>{
@@ -84,6 +89,8 @@ return MaterialPageRoute<dynamic>(builder: (context) =>   RegisterScreen(), sett
 },BookDetail: (data) {
 var args = data.getArgs<BookDetailArguments>(
 orElse: ()=> BookDetailArguments(),);return MaterialPageRoute<dynamic>(builder: (context) =>   BookDetail(key:args.key,bookDocument:args.bookDocument,), settings: data,);
+},HomeScreen: (data) {
+return MaterialPageRoute<dynamic>(builder: (context) =>   HomeScreen(), settings: data,);
 },};}
 
 /// ************************************************************************

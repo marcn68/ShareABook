@@ -7,9 +7,11 @@ class BookListView extends StatelessWidget {
   const BookListView({
     Key key,
     @required this.books,
+    this.priceDisplay = false
   }) : super(key: key);
 
   final List<Book> books;
+  final bool priceDisplay;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class BookListView extends StatelessWidget {
       child: ListView.builder(
           itemCount: books.length,
           itemBuilder: (context, index) {
-            return BookCardItem(book: books[index]);
+            return BookCardItem(book: books[index], priceDisplay: priceDisplay);
           }),
     );
   }

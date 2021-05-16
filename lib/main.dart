@@ -10,6 +10,7 @@ import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/pages/add_book.dart';
+import 'package:share_a_book/ui/pages/home.dart';
 import 'package:share_a_book/ui/pages/login.dart';
 import 'package:share_a_book/ui/widgets/drawer.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -109,12 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
-        ),
-      ),
+      body: HomeScreen(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
