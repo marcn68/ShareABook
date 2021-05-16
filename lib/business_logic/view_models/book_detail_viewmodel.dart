@@ -7,10 +7,11 @@ import 'package:share_a_book/services/service_locator.dart';
 class BookDetailViewModel extends ChangeNotifier {
   final DatabaseService _databaseService = serviceLocator<DatabaseService>();
 
-  AppUser user;
-
+  AppUser user = AppUser();
   Future getUserFromDatabase(uid) async {
-    user = await _databaseService.getUserFromDatabase(uid: uid);
+    dynamic test = await _databaseService.getUserFromDatabase(uid: uid);
+    user.fullName = test['fullName'];
+    user.email = test['email'];
     notifyListeners();
   }
 }
