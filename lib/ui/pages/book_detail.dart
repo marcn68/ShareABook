@@ -19,6 +19,7 @@ class _BookDetailState extends State<BookDetail> {
 
   @override
   void initState() {
+    print(widget.bookDocument.userBook.userId);
     model.getUserFromDatabase(widget.bookDocument.userBook.userId);
     super.initState();
   }
@@ -57,40 +58,40 @@ class _BookDetailState extends State<BookDetail> {
                   child: Image.network(widget.bookDocument.userBook.book.cover,
                       scale: 1.2),
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 15),
                 Center(
                   child: Text(
-                    widget.bookDocument.userBook.book.bookTitle,
+                    widget.bookDocument.userBook.book.title,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Center(
                   child: Text(
                     "by ${widget.bookDocument.userBook.book.authors[0]}",
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
                 Center(
                   child: Text(
                     "First Published in ${widget.bookDocument.userBook.book.publishDate}",
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
                 Center(
                   child: Text(
                     "${widget.bookDocument.userBook.book.numberOfPages} Pages",
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
                 SizedBox(
-                  height: 4,
+                  height: 10,
                 ),
                 Divider(
                   height: 1,
                   color: Color(0xff707070),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 25,
                 ),
                 Container(
                   child: Row(
@@ -100,10 +101,10 @@ class _BookDetailState extends State<BookDetail> {
                         style: TextStyle(fontSize: 16),
                       ),
                       SizedBox(
-                        width: 60,
+                        width: 90,
                       ),
                       Text(
-                        "Price: ${widget.bookDocument.userBook.book.condition.toString().split(".")[1]}",
+                        "Condition: ${widget.bookDocument.userBook.book.condition.toString().split(".")[1]}",
                         style: TextStyle(fontSize: 16),
                       ),
                     ],
@@ -113,15 +114,17 @@ class _BookDetailState extends State<BookDetail> {
                   height: 15,
                 ),
                 Expanded(
-                  child: ListTile(
-                    onTap: () {},
-                    title: Text(
-                      "${model.user.fullName}",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    subtitle: Text(
-                      "${model.user.email}",
-                      style: TextStyle(fontSize: 16),
+                  child: Card(
+                    child: ListTile(
+                      onTap: () {},
+                      title: Text(
+                        "${model.user.fullName}",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      subtitle: Text(
+                        "${model.user.email}",
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
                   ),
                 ),
