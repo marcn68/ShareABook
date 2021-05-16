@@ -10,8 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../business_logic/models/book.dart';
+import '../business_logic/models/book_document.dart';
 import '../main.dart';
 import '../ui/pages/add_book_detail.dart';
+import '../ui/pages/book_detail.dart';
 import '../ui/pages/change_password.dart';
 import '../ui/pages/find_book.dart';
 
@@ -22,6 +24,7 @@ class Routes {
   static const String changePassword = '/change-password';
   static const String addBookDetail = '/add-book-detail';
   static const String findBook = '/find-book';
+  static const String bookDetail = '/book-detail';
   static const all = <String>{
     myApp,
     myHomePage,
@@ -29,6 +32,7 @@ class Routes {
     changePassword,
     addBookDetail,
     findBook,
+    bookDetail,
   };
 }
 
@@ -42,6 +46,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.changePassword, page: ChangePassword),
     RouteDef(Routes.addBookDetail, page: AddBookDetail),
     RouteDef(Routes.findBook, page: FindBook),
+    RouteDef(Routes.bookDetail, page: BookDetail),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -97,6 +102,18 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    BookDetail: (data) {
+      var args = data.getArgs<BookDetailArguments>(
+        orElse: () => BookDetailArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => BookDetail(
+          key: args.key,
+          bookDocument: args.bookDocument,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -122,4 +139,11 @@ class AddBookDetailArguments {
   final Key key;
   final Book book;
   AddBookDetailArguments({this.key, this.book});
+}
+
+/// BookDetail arguments holder class
+class BookDetailArguments {
+  final Key key;
+  final BookDocument bookDocument;
+  BookDetailArguments({this.key, this.bookDocument});
 }
