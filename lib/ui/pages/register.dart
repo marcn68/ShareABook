@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/business_logic/view_models/register_viewmodel.dart';
+import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
 import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
 import 'package:share_a_book/ui/widgets/custom_input.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 import 'package:sign_button/constants.dart';
-
-import 'login.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -15,8 +16,15 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
+  RegisterViewModel model = serviceLocator<RegisterViewModel>();
+
   @override
   void initState() {
+    model.fullnameController = TextEditingController();
+    model.emailController = TextEditingController();
+    model.passwordController = TextEditingController();
+    model.confirmPasswordController = TextEditingController();
     super.initState();
   }
 
@@ -48,19 +56,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: <Widget>[
                       CustomLabel(text: "Register", fontSize: 20.0),
                       SizedBox(height: 10),
-                      CustomInput(label: "Fullname", verticalPadding: 2),
-                      CustomInput(label: "Username", verticalPadding: 2),
-                      CustomInput(label: "Email", verticalPadding: 2),
-                      CustomInput(label: "Password", verticalPadding: 2),
-                      CustomInput(label: "Phone", verticalPadding: 2),
+                      CustomInput(label: "Fullname", verticalPadding: 5, controller: model.fullnameController),
+                      CustomInput(label: "Email", verticalPadding: 5, controller: model.emailController),
+                      CustomInput(label: "Password", verticalPadding: 5, controller: model.passwordController, isObscured: true),
+                      CustomInput(label: "Confirm Password", verticalPadding: 5, controller: model.confirmPasswordController, isObscured: true),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                           height: 42.0,
                           child:
-                              CustomButton(text: "Register", onPressed: () {})),
+                              CustomButton(text: "Register", onPressed: () {model.signUpWithEmailAndPassword();})),
                       CustomLabel(text: "Or register with", fontSize: 16.0),
                       Container(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                           height: 40.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -69,12 +76,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   text: "",
                                   provider: ButtonType.google,
                                   isMini: true,
-                                  onPressed: () {}),
+                                  onPressed: () {model.signUpWithGoogle();}),
                               CustomSignInButton(
                                   text: "",
                                   provider: ButtonType.facebook,
                                   isMini: true,
-                                  onPressed: () {})
+                                  onPressed: () {model.signUpWithFacebook();})
                             ],
                           )),
                       Divider(
@@ -91,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   fontSize: 16.0),
                               SizedBox(width: 20),
                               CustomButton(
-                                  text: "Login", onPressed: navigateToLogin)
+                                  text: "Login", onPressed: (){serviceLocator<NavigationService>().back();})
                             ],
                           )),
                     ],
@@ -100,12 +107,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ]),
         ) // This trailing comma makes auto-formatting nicer for build methods.
         );
-  }
-
-  void navigateToLogin() async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
   }
 }

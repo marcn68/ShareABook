@@ -24,7 +24,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<AppUser>(context);
+    final user = _authService.currentUser;
 
     return Container(
       color: Constants.SAFEAREA_COLOR,
