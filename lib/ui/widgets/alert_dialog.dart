@@ -1,29 +1,34 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/services/service_locator.dart';
+import 'package:stacked_services/stacked_services.dart';
 
-showAlertDialog(BuildContext context) {
+showAlertDialog() {
+
+
   // Create button
   Widget okButton = FlatButton(
     child: Text("OK"),
     onPressed: () {
-      Navigator.of(context).pop();
+      serviceLocator<NavigationService>().back();
     },
-  );
-
-  // Create AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Invalid Password"),
-    content: Text("Password does not match"),
-    actions: [
-      okButton,
-    ],
   );
 
   // show the dialog
   showDialog(
+/*
     context: context,
+*/
     builder: (BuildContext context) {
-      return alert;
+      return AlertDialog(
+        title: Text("Invalid Password"),
+        content: Text("Password does not match"),
+        actions: [
+          okButton,
+        ],
+      );
     },
   );
+
 }

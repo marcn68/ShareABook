@@ -8,6 +8,7 @@ import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
 import 'package:share_a_book/ui/widgets/custom_input.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 import 'package:sign_button/constants.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void initState() {
+    model.fullnameController = TextEditingController();
     model.emailController = TextEditingController();
     model.passwordController = TextEditingController();
     model.confirmPasswordController = TextEditingController();
@@ -54,14 +56,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: <Widget>[
                       CustomLabel(text: "Register", fontSize: 20.0),
                       SizedBox(height: 10),
-                      CustomInput(label: "Email", verticalPadding: 10, controller: model.emailController),
-                      CustomInput(label: "Password", verticalPadding: 10, controller: model.passwordController, isObscured: true),
-                      CustomInput(label: "Confirm Password", verticalPadding: 10, controller: model.confirmPasswordController, isObscured: true),
+                      CustomInput(label: "Fullname", verticalPadding: 5, controller: model.fullnameController),
+                      CustomInput(label: "Email", verticalPadding: 5, controller: model.emailController),
+                      CustomInput(label: "Password", verticalPadding: 5, controller: model.passwordController, isObscured: true),
+                      CustomInput(label: "Confirm Password", verticalPadding: 5, controller: model.confirmPasswordController, isObscured: true),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                           height: 42.0,
                           child:
-                              CustomButton(text: "Register", onPressed: () {model.signUpWithEmailAndPassword(context);})),
+                              CustomButton(text: "Register", onPressed: () {model.signUpWithEmailAndPassword();})),
                       CustomLabel(text: "Or register with", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -73,12 +76,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   text: "",
                                   provider: ButtonType.google,
                                   isMini: true,
-                                  onPressed: () {model.signUpWithGoogle(context);}),
+                                  onPressed: () {model.signUpWithGoogle();}),
                               CustomSignInButton(
                                   text: "",
                                   provider: ButtonType.facebook,
                                   isMini: true,
-                                  onPressed: () {model.signUpWithFacebook(context);})
+                                  onPressed: () {model.signUpWithFacebook();})
                             ],
                           )),
                       Divider(
@@ -95,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   fontSize: 16.0),
                               SizedBox(width: 20),
                               CustomButton(
-                                  text: "Login", onPressed: (){model.navigateToLogin(context);})
+                                  text: "Login", onPressed: (){serviceLocator<NavigationService>().back();})
                             ],
                           )),
                     ],

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/business_logic/view_models/login_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
@@ -8,6 +9,7 @@ import 'package:share_a_book/ui/widgets/custom_signin_button.dart';
 import 'package:share_a_book/ui/widgets/custom_input.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 import 'package:sign_button/constants.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -79,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           height: 42.0,
                           child: CustomButton(
-                              text: "Register", onPressed: () {model.navigateToRegister(context);})),
+                              text: "Register", onPressed: () { serviceLocator<NavigationService>().navigateTo(Routes.registerScreen);})),
                     ],
                   ),
                 ),

@@ -15,6 +15,8 @@ import 'package:share_a_book/services/web_api/backend_api.dart';
 import 'package:share_a_book/services/web_api/backend_api_implementation.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'book_add/book_add_service_implementation.dart';
+import 'database/database_service.dart';
+import 'database/database_service_firestore.dart';
 import 'web_api/web_api.dart';
 import 'web_api/web_api_implementation.dart';
 
@@ -46,8 +48,11 @@ void setupServiceLocator() {
   serviceLocator.registerFactory<LoginViewModel>(() => LoginViewModel());
 
   serviceLocator.registerFactory<RegisterViewModel>(() => RegisterViewModel());
+  serviceLocator.registerFactory<DatabaseService>(() => DatabaseServiceFirestore());
 
   serviceLocator.registerFactory<ChangePasswordViewModel>(
       () => ChangePasswordViewModel());
   serviceLocator.registerFactory<FindBookViewModel>(() => FindBookViewModel());
+  serviceLocator.registerLazySingleton<DialogService>(() => DialogService());
+
 }
