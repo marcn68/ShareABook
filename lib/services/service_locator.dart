@@ -52,7 +52,6 @@ void setupServiceLocator() {
   serviceLocator.registerFactory<LoginViewModel>(() => LoginViewModel());
 
   serviceLocator.registerFactory<RegisterViewModel>(() => RegisterViewModel());
-  serviceLocator.registerFactory<DatabaseService>(() => DatabaseServiceFirestore());
 
   serviceLocator.registerFactory<ChangePasswordViewModel>(
       () => ChangePasswordViewModel());
