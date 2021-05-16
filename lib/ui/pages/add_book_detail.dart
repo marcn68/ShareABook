@@ -66,7 +66,7 @@ class _AddBookDetailState extends State<AddBookDetail> {
                 SizedBox(height: 5),
                 Center(
                   child: Text(
-                    widget.book.bookTitle,
+                    widget.book.title,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),

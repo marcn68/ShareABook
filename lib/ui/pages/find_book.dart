@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/find_book_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-import 'package:share_a_book/ui/widgets/book_list_view.dart';
+import 'package:share_a_book/ui/widgets/book_detail_list_view.dart';
 
 class FindBook extends StatefulWidget {
   @override
@@ -58,9 +58,9 @@ class _FindBookState extends State<FindBook> {
                               labelText: "Search book",
                               hintText: "Example: Harry Potter",
                               hintStyle: TextStyle(fontSize: 14.0)),
-                          keyboardType: TextInputType.number,
-                          onSubmitted: (searchInput) {
+                          onChanged: (searchInput) {
                             model.searchInput = searchInput;
+                            model.searchBookByTerm();
                           }),
                     ),
                   ],
@@ -68,7 +68,7 @@ class _FindBookState extends State<FindBook> {
                 SizedBox(
                   height: 30.0,
                 ),
-                BookListView(books: model.books),
+                BookDetailListView(bookDocuments: model.bookDocuments),
               ],
             ),
           ),
