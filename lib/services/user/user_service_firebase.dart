@@ -28,6 +28,7 @@ class UserServiceFirebase implements UserService {
   Future updateUser({String userImage, String fullName}) async {
     final user = _auth.currentUser;
     await user.updateProfile(displayName: fullName, photoURL: userImage);
+    return _auth.currentUser;
   }
 
   Future reAuthenticateUser({User user, String password}) async {

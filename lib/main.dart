@@ -1,3 +1,4 @@
+import 'package:algolia/algolia.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:share_a_book/app/app.router.dart';
@@ -13,10 +14,18 @@ import 'package:share_a_book/ui/pages/login.dart';
 import 'package:share_a_book/ui/widgets/drawer.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+class Application {
+  static final Algolia algolia = Algolia.init(
+    applicationId: '1YUUXA3N5F',
+    apiKey: '33efaf6d1d792d5ac2af85530d43f9ef',
+  );
+}
+
 void main() async {
   setupServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   final bool isFirstTime = await PrefsUtils.isFirstTime();
   runApp(MyApp(
     isFirstTime: isFirstTime,

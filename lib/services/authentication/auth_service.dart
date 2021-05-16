@@ -7,6 +7,9 @@ abstract class AuthService {
   // get logged in user
   AppUser get currentUser;
 
+  // get logged in user token
+  Future getCurrentUserToken();
+
   // register with email and password
   Future registerWithEmailAndPassword(String email, String password);
 

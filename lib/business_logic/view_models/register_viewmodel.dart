@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/utils/user_utils.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
@@ -28,12 +29,12 @@ class RegisterViewModel extends ChangeNotifier {
     }else {
       print(emailController.text + " " + passwordController.text + " / " + fullnameController.text);
       UserCredential _userCredential = await _authService.registerWithEmailAndPassword(emailController.text, passwordController.text);
-      _userService.updateUser(fullName: fullnameController.text);
-      AppUser appUser = UserUtils.userFromFirebaseUser(_userCredential.user);
+      User user = await _userService.updateUser(fullName: fullnameController.text, userImage: "abc");
+      AppUser appUser = UserUtils.userFromFirebaseUser(user);
       if (_userCredential.additionalUserInfo.isNewUser) {
         _databaseService.initializeUserInDatabase(user: appUser);
       }
-      notifyListeners();
+      await serviceLocator<NavigationService>().navigateTo(Routes.authenticateWrapper);
     }
   }
 

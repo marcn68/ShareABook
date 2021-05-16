@@ -6,6 +6,7 @@ import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/condition_dropdown.dart';
 
+// ignore: must_be_immutable
 class AddBookDetail extends StatefulWidget {
   Book book;
   AddBookDetail({Key key, this.book}) : super(key: key);
@@ -16,18 +17,16 @@ class AddBookDetail extends StatefulWidget {
 
 class _AddBookDetailState extends State<AddBookDetail> {
   AddBookViewModel model = serviceLocator<AddBookViewModel>();
-  TextEditingController _priceController;
-  Condition _condition;
 
   @override
   void initState() {
-    _priceController = TextEditingController();
+    model.priceController = TextEditingController();
     super.initState();
   }
 
   void updateCondition(Condition condition) {
     setState(() {
-      _condition = condition;
+      model.condition = condition;
     });
   }
 
@@ -67,7 +66,7 @@ class _AddBookDetailState extends State<AddBookDetail> {
                 SizedBox(height: 5),
                 Center(
                   child: Text(
-                    widget.book.bookTitle,
+                    widget.book.title,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -109,7 +108,7 @@ class _AddBookDetailState extends State<AddBookDetail> {
                 Expanded(
                   child: TextField(
                     style: TextStyle(fontSize: 14.0),
-                    controller: _priceController,
+                    controller: model.priceController,
                     decoration: InputDecoration(
                       prefixIcon: Padding(
                         padding: const EdgeInsets.only(left: 15.0),
@@ -152,8 +151,9 @@ class _AddBookDetailState extends State<AddBookDetail> {
                       style: TextStyle(color: Colors.black, fontSize: 14),
                     ),
                     onPressed: () {
-                      model.sendBookInfo(widget.book,
-                          _priceController.text.toString(), _condition);
+                      model.sendBookInfo(
+                        widget.book,
+                      );
                     },
                   ),
                 ),

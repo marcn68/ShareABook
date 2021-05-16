@@ -6,7 +6,7 @@ class DatabaseServiceFirestore implements DatabaseService {
   final _usersRef = FirebaseFirestore.instance.collection('users');
   @override
   Future getUserFromDatabase({String uid}) async {
-    return await _usersRef.doc(uid).get();
+    return (await _usersRef.doc(uid).get()).data();
   }
 
   @override

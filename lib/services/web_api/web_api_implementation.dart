@@ -13,6 +13,8 @@ class WebApiImplementation implements WebApi {
 
   @override
   Future<List<Book>> getBookById(jsonIsbn) async {
+    // String body =
+    //     '{"ISBN:9780980200447": {"url": "https://openlibrary.org/books/OL22853304M/Slow_reading", "key": "/books/OL22853304M", "title": "Slow reading", "authors": [{"url": "https://openlibrary.org/authors/OL6548935A/John_Miedema", "name": "John Miedema"}], "number_of_pages": 92, "pagination": "80p.", "weight": "1 grams", "by_statement": "by John Miedema.", "identifiers": {"amazon": ["098020044X"], "google": ["4LQU1YwhY6kC"], "librarything": ["8071257"], "goodreads": ["6383507"], "isbn_10": ["1936117363"], "isbn_13": ["9780980200447", "9781936117369"], "lccn": ["2008054742"], "oclc": ["297222669"], "openlibrary": ["OL22853304M"]}, "classifications": {"lc_classifications": ["Z1003 .M58 2009"], "dewey_decimal_class": ["028/.9"]}, "publishers": [{"name": "Litwin Books"}], "publish_places": [{"name": "Duluth, Minn"}], "publish_date": "March 2009", "subjects": [{"name": "Books and reading", "url": "https://openlibrary.org/subjects/books_and_reading"}, {"name": "Reading", "url": "https://openlibrary.org/subjects/reading"}], "notes": "Includes bibliographical references and index.", "table_of_contents": [{"level": 0, "label": "", "title": "The personal nature of slow reading", "pagenum": ""}, {"level": 0, "label": "", "title": "Slow reading in an information ecology", "pagenum": ""}, {"level": 0, "label": "", "title": "The slow movement and slow reading", "pagenum": ""}, {"level": 0, "label": "", "title": "The psychology of slow reading", "pagenum": ""}, {"level": 0, "label": "", "title": "The practice of slow reading.", "pagenum": ""}], "links": [{"title": "Author\'s Website", "url": "http://johnmiedema.ca"}, {"title": "Chapter 2", "url": "http://litwinbooks.com/slowreading-ch2.php"}, {"title": "Get the e-book", "url": "http://www.powells.com/biblio/91-9781936117369-0"}], "ebooks": [{"preview_url": "https://archive.org/details/slowreading00mied", "availability": "borrow", "formats": {}, "borrow_url": "https://openlibrary.org/books/OL22853304M/Slow_reading/borrow", "checkedout": false}], "cover": {"small": "https://covers.openlibrary.org/b/id/5546156-S.jpg", "medium": "https://covers.openlibrary.org/b/id/5546156-M.jpg", "large": "https://covers.openlibrary.org/b/id/5546156-L.jpg"}}}';
     isbn += jsonIsbn.toString();
     var queryParameters = {'bibkeys': isbn, 'jscmd': 'data', 'format': 'json'};
     final uri = Uri.https(_host, _path, queryParameters);
@@ -26,7 +28,7 @@ class WebApiImplementation implements WebApi {
     String isbn = jsonObject[this.isbn]["identifiers"]["isbn_10"]
         .toString()
         .substring(1, 10);
-    String bookTitle = jsonObject[this.isbn]["title"].toString();
+    String title = jsonObject[this.isbn]["title"].toString();
 
     List<String> authors = [];
     for (var author in jsonObject[this.isbn]["authors"]) {
@@ -60,14 +62,14 @@ class WebApiImplementation implements WebApi {
 
     List<Book> list = [];
     list.add(Book(
-        isbn = isbn,
-        bookTitle = bookTitle,
-        authors = authors,
-        numberOfPages = numberOfPages,
-        publishers = publishers,
-        publishDate = publishDate,
-        subjects = subjects,
-        cover = cover));
+        isbn: isbn,
+        title: title,
+        authors: authors,
+        numberOfPages: numberOfPages,
+        publishers: publishers,
+        publishDate: publishDate,
+        subjects: subjects,
+        cover: cover));
 
     return list;
   }
