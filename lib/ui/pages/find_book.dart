@@ -58,9 +58,9 @@ class _FindBookState extends State<FindBook> {
                               labelText: "Search book",
                               hintText: "Example: Harry Potter",
                               hintStyle: TextStyle(fontSize: 14.0)),
-                          keyboardType: TextInputType.number,
-                          onSubmitted: (searchInput) {
+                          onChanged: (searchInput) {
                             model.searchInput = searchInput;
+                            model.searchBookByTerm();
                           }),
                     ),
                   ],
