@@ -9,8 +9,6 @@ import 'package:share_a_book/ui/widgets/custom_input.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 import 'package:sign_button/constants.dart';
 
-import 'login.dart';
-
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -19,12 +17,12 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
 
   RegisterViewModel model = serviceLocator<RegisterViewModel>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
 
   @override
   void initState() {
+    model.emailController = TextEditingController();
+    model.passwordController = TextEditingController();
+    model.confirmPasswordController = TextEditingController();
     super.initState();
   }
 
@@ -60,17 +58,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     children: <Widget>[
                       CustomLabel(text: "Register", fontSize: 20.0),
                       SizedBox(height: 10),
-                      CustomInput(label: "Email", verticalPadding: 10, controller: _emailController),
-                      CustomInput(label: "Password", verticalPadding: 10, controller: _passwordController),
-                      CustomInput(label: "Confirm Password", verticalPadding: 10, controller: _confirmPasswordController),
+                      CustomInput(label: "Email", verticalPadding: 10, controller: model.emailController),
+                      CustomInput(label: "Password", verticalPadding: 10, controller: model.passwordController, isObscured: true),
+                      CustomInput(label: "Confirm Password", verticalPadding: 10, controller: model.confirmPasswordController, isObscured: true),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                           height: 42.0,
                           child:
-                              CustomButton(text: "Register", onPressed: () {model.signUpWithEmailAndPassword(_emailController.text, _passwordController.text, _confirmPasswordController.text, context);})),
+                              CustomButton(text: "Register", onPressed: () {model.signUpWithEmailAndPassword(context);})),
                       CustomLabel(text: "Or register with", fontSize: 16.0),
                       Container(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
                           height: 40.0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
