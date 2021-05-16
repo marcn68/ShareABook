@@ -100,4 +100,9 @@ class AuthServiceFirebase implements AuthService {
       return null;
     }
   }
+
+  @override
+  Future getCurrentUserToken() async {
+    return await _auth.currentUser.getIdToken();
+  }
 }
