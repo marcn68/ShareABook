@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_a_book/app/app.router.dart';
+import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/custom_button.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
-
-import 'login.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class GetStartedScreen extends StatefulWidget {
   @override
@@ -26,12 +27,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 177, 0, 0),
-                  child: Icon(
-                    Icons.book_online,
-                    color: Colors.white,
-                    size: 150,
-                  ),
+                  padding: EdgeInsets.fromLTRB(0, 90, 0, 0),
+                  child: Image.asset("assets/logo_name.png", scale: 1),
                 ),
                 Container(
                   height: 300,
@@ -67,9 +64,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
 
   /*Functions*/
   void navigateToLogin() async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
+    await serviceLocator<NavigationService>()
+        .navigateTo(Routes.authenticateWrapper);
   }
 }
