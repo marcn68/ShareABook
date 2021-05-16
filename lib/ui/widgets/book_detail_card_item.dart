@@ -28,13 +28,18 @@ class BookDetailCardItem extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(left: 20),
+              constraints: BoxConstraints(maxWidth: 250),
+              padding: const EdgeInsets.only(left: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    bookDocument.userBook.book.bookTitle,
+                    bookDocument.userBook.book.title,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    // overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    height: 2,
                   ),
                   Text(
                     "by ${bookDocument.userBook.book.authors[0]}",

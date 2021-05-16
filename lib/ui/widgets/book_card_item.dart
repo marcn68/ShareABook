@@ -37,12 +37,13 @@ class BookCardItem extends StatelessWidget {
               ),
             ),
             Container(
+              constraints: BoxConstraints(maxWidth: 250),
               padding: const EdgeInsets.only(left: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    book.bookTitle,
+                    book.title,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
