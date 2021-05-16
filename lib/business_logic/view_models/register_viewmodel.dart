@@ -27,7 +27,6 @@ class RegisterViewModel extends ChangeNotifier {
     if(passwordController.text != confirmPasswordController.text){
       await serviceLocator<DialogService>().showDialog(title: "Invalid Password", description: "Password does not match");
     }else {
-      print(emailController.text + " " + passwordController.text + " / " + fullnameController.text);
       UserCredential _userCredential = await _authService.registerWithEmailAndPassword(emailController.text, passwordController.text);
       User user = await _userService.updateUser(fullName: fullnameController.text, userImage: "abc");
       AppUser appUser = UserUtils.userFromFirebaseUser(user);
@@ -39,12 +38,18 @@ class RegisterViewModel extends ChangeNotifier {
   }
 
   Future signUpWithGoogle() async {
-    await _authService.signInWithGoogle();
-    notifyListeners();
+    UserCredential _userCredential =  await _authService.signInWithGoogle();
+    AppUser appUser = UserUtils.userFromFirebaseUser(_userCredential.user);
+    if (_userCredential.additionalUserInfo.isNewUser) {
+      _databaseService.initializeUserInDatabase(user: appUser);
+    }
   }
 
   Future signUpWithFacebook() async {
-    await _authService.signInWithFacebook();
-    notifyListeners();
+    UserCredential _userCredential =  await _authService.signInWithFacebook();
+    AppUser appUser = UserUtils.userFromFirebaseUser(_userCredential.user);
+    if (_userCredential.additionalUserInfo.isNewUser) {
+      _databaseService.initializeUserInDatabase(user: appUser);
+    }
   }
 }

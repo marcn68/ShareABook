@@ -18,11 +18,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   LoginViewModel model = serviceLocator<LoginViewModel>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
 
   @override
   void initState() {
+    model.emailController = TextEditingController();
+    model.passwordController = TextEditingController();
     super.initState();
   }
 
@@ -52,12 +52,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: <Widget>[
                       CustomLabel(text: "Login", fontSize: 20.0),
-                      CustomInput(label: "Email", verticalPadding: 16, controller: this._emailController),
-                      CustomInput(label: "Password", verticalPadding: 16, controller: this._passwordController),
+                      CustomInput(label: "Email", verticalPadding: 16, controller: model.emailController),
+                      CustomInput(label: "Password", verticalPadding: 16, controller: model.passwordController, isObscured: true),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 42.0,
-                          child: CustomButton(text: "Login", onPressed: (){model.signInWithEmailAndPassword(_emailController, _passwordController, context);})),
+                          child: CustomButton(text: "Login", onPressed: (){model.signInWithEmailAndPassword();})),
                       CustomLabel(text: "Or login with", fontSize: 16.0),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               text: "Login with Google",
                               provider: ButtonType.google,
                               isMini: false,
-                              onPressed:  () {model.signInWithGoogle(context);})),
+                              onPressed:  () {model.signInWithGoogle();})),
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                           height: 45.0,
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               text: "Login with Facebook",
                               provider: ButtonType.facebook,
                               isMini: false,
-                              onPressed:  () {model.signInWithFacebook(context);})),
+                              onPressed:  () {model.signInWithFacebook();})),
                       CustomLabel(
                           text: "Don't have an account?", fontSize: 16.0),
                       Container(
