@@ -106,10 +106,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       fontSize: 14,
                     ),
                   ),
-                  onTap: () {
-                    // Navigator.pop(context);
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => PrimaryPage()));
+                  onTap: () async {
+                    await serviceLocator<NavigationService>()
+                    .navigateTo(Routes.myApp);
                   },
                 ),
                 ListTile(

@@ -8,9 +8,11 @@ class BookCardItem extends StatelessWidget {
   const BookCardItem({
     Key key,
     this.book,
+    this.priceDisplay = false
   }) : super(key: key);
 
   final Book book;
+  final bool priceDisplay;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +60,10 @@ class BookCardItem extends StatelessWidget {
                     "${book.numberOfPages} Pages",
                     style: TextStyle(fontSize: 12),
                   ),
+                  priceDisplay ? Text(
+                    "Price: ${book.price} ",
+                    style: TextStyle(fontSize: 12),
+                  ) : Text("")
                 ],
               ),
             )
