@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:share_a_book/business_logic/models/book.dart';
-import 'package:share_a_book/services/book_add/book_add_service.dart';
+import 'package:share_a_book/services/book/book_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 
 class AddBookViewModel extends ChangeNotifier {
-  final BookAddService _bookAddService = serviceLocator<BookAddService>();
+  final BookService _bookAddService = serviceLocator<BookService>();
 
   String isbn;
-  TextEditingController searchController;
+  TextEditingController priceController;
+  Condition condition;
   List<Book> _books = [];
 
   List<Book> get books {
@@ -23,8 +24,8 @@ class AddBookViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void sendBookInfo(Book book, String price, Condition condition) async {
-    book.price = int.parse(price);
+  void sendBookInfo(Book book) async {
+    book.price = int.parse(priceController.text.toString());
     book.condition = condition;
 
     response = await _bookAddService.sendBookInfo(book);

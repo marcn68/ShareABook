@@ -11,6 +11,7 @@ class Book {
   String cover;
   int price;
   Condition condition;
+  int popularity;
 
   Book(this.isbn, this.bookTitle, this.authors, this.numberOfPages,
       this.publishers, this.publishDate, this.subjects, this.cover);
@@ -29,7 +30,7 @@ class Book {
         publishers.add(v["name"]);
       });
     }
-    publishDate = json['publish_date'];
+    publishDate = json['publishDate'];
     if (json['subjects'] != null) {
       subjects = <String>[];
       json['subjects'].forEach((v) {
@@ -52,7 +53,7 @@ class Book {
     if (this.publishers != null) {
       data['publishers'] = this.publishers.map((v) => v).toList();
     }
-    data['publish_date'] = this.publishDate;
+    data['publishDate'] = this.publishDate;
     if (this.subjects != null) {
       data['subjects'] = this.subjects.map((v) => v).toList();
     }
@@ -61,6 +62,7 @@ class Book {
     }
     data['price'] = this.price;
     data['condition'] = this.condition.index;
+    data['popularity'] = this.popularity;
     return data;
   }
 }
