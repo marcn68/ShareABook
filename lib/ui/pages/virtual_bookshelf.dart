@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/view_models/virtual_bookshelf_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
+import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/book_list_view.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 
@@ -17,10 +18,8 @@ class _VirtualBookshelfScreenState extends State<VirtualBookshelfScreen> {
       serviceLocator<VirtualBookshelfViewModel>();
   @override
   void initState() {
+    virtualBookshelfModel.getLoggedInUserBooks();
     super.initState();
-    final user = Provider.of<AppUser>(context);
-    virtualBookshelfModel.getLoggedInUserBooks(user.uid);
-    /*virtualBookshelfModel.getLoggedInUserBooks("");*/
   }
 
   @override
@@ -29,7 +28,15 @@ class _VirtualBookshelfScreenState extends State<VirtualBookshelfScreen> {
         create: (context) => virtualBookshelfModel,
         child: Consumer<VirtualBookshelfViewModel>(
             builder: (context, model, child) => Scaffold(
-                backgroundColor: Color(0xffDFEEF5),
+                backgroundColor: Constants.SECONDARY_BLUE,
+                appBar: AppBar(
+                  title: Text(
+                    "My Books",
+                    style: Constants.AppBarText,
+                  ),
+                  centerTitle: true,
+                  backgroundColor: Constants.PRIMARY_BLUE,
+                ),
                 body: Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: Center(

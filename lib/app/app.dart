@@ -6,6 +6,7 @@ import 'package:share_a_book/ui/pages/find_book.dart';
 import 'package:share_a_book/ui/pages/home.dart';
 import 'package:share_a_book/ui/pages/login.dart';
 import 'package:share_a_book/ui/pages/register.dart';
+import 'package:share_a_book/ui/pages/virtual_bookshelf.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 @StackedApp(routes: [
@@ -18,5 +19,6 @@ import 'package:stacked/stacked_annotations.dart';
   MaterialRoute(page: RegisterScreen),
   MaterialRoute(page: BookDetail),
   MaterialRoute(page: HomeScreen),
+  MaterialRoute(page: VirtualBookshelfScreen),
 ])
 class AppSetup {}
