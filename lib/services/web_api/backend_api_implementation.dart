@@ -9,8 +9,8 @@ import 'package:http/http.dart' as http;
 class BackendApiImplementation implements BackendApi {
   final AuthService _authService = serviceLocator<AuthService>();
   String token;
-  final _host = "https://share-a-book.herokuapp.com";
-  final _path = "books";
+  final _host = "share-a-book.herokuapp.com";
+  final _path = "book";
 
   List<Book> _books;
 
@@ -19,7 +19,7 @@ class BackendApiImplementation implements BackendApi {
     Map<String, String> _headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",
-      "Authentication": "Bearer ${await _authService.getCurrentUserToken()}"
+      "Authorization": "Bearer $token"
     };
     return _headers;
   }
