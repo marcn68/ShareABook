@@ -1,13 +1,18 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:share_a_book/business_logic/models/book.dart';
 import 'package:share_a_book/services/web_api/backend_api.dart';
 import 'package:http/http.dart' as http;
 
 class BackendApiImplementation implements BackendApi {
-  final _host = "openlibrary.org";
-  final _path = "api/books";
-  final Map<String, String> _headers = {'Accept': 'application/json'};
+  final _host = "https://share-a-book.herokuapp.com";
+  final _path = "books";
+  final Map<String, String> _headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    //'Authentication': 'Bearer ${user.getIdToken()}'
+  };
   List<Book> _books;
 
   @override
@@ -48,5 +53,4 @@ class BackendApiImplementation implements BackendApi {
     _books = jsonObject;
     return _books;
   }
-
 }
