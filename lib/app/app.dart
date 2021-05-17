@@ -5,7 +5,6 @@ import 'package:share_a_book/ui/pages/book_detail.dart';
 import 'package:share_a_book/ui/pages/change_password.dart';
 import 'package:share_a_book/ui/pages/find_book.dart';
 import 'package:share_a_book/ui/pages/home.dart';
-import 'package:share_a_book/ui/pages/login.dart';
 import 'package:share_a_book/ui/pages/orders.dart';
 import 'package:share_a_book/ui/pages/register.dart';
 import 'package:share_a_book/ui/pages/user_detail.dart';

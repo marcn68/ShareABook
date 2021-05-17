@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:share_a_book/business_logic/models/book_document.dart';
 import 'package:share_a_book/services/service_locator.dart';
