@@ -29,7 +29,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             backgroundColor: Constants.SECONDARY_BLUE,
             appBar: AppBar(
               title: Text(
-                "Add Book",
+                "Change Your Password",
                 style: Constants.AppBarText,
               ),
               centerTitle: true,
@@ -41,14 +41,15 @@ class _ChangePasswordState extends State<ChangePassword> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
-                      style: TextStyle(fontSize: 14.0),
+                      style: TextStyle(fontSize: 18.0),
+                      obscureText: true,
                       controller: model.oldPassController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 width: 3.0, color: Constants.PRIMARY_ORANGE),
                             borderRadius: BorderRadius.circular(20.0)),
-                        labelStyle: TextStyle(fontSize: 14.0),
+                        labelStyle: TextStyle(fontSize: 18.0),
                         labelText: "Old Password",
                       ),
                       //onSubmitted: () async {},
@@ -59,14 +60,15 @@ class _ChangePasswordState extends State<ChangePassword> {
                   ),
                   Expanded(
                     child: TextField(
-                      style: TextStyle(fontSize: 14.0),
+                      style: TextStyle(fontSize: 18.0),
+                      obscureText: true,
                       controller: model.newPassController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 width: 3.0, color: Constants.PRIMARY_ORANGE),
                             borderRadius: BorderRadius.circular(20.0)),
-                        labelStyle: TextStyle(fontSize: 14.0),
+                        labelStyle: TextStyle(fontSize: 18.0),
                         labelText: "New Password",
                       ),
                       //onSubmitted: () async {},
@@ -77,14 +79,15 @@ class _ChangePasswordState extends State<ChangePassword> {
                   ),
                   Expanded(
                     child: TextField(
-                      style: TextStyle(fontSize: 14.0),
+                      style: TextStyle(fontSize: 18.0),
+                      obscureText: true,
                       controller: model.confirmPassController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 width: 3.0, color: Constants.PRIMARY_ORANGE),
                             borderRadius: BorderRadius.circular(20.0)),
-                        labelStyle: TextStyle(fontSize: 14.0),
+                        labelStyle: TextStyle(fontSize: 18.0),
                         labelText: "Confirm Password",
                       ),
                       //onSubmitted: () async {},
@@ -99,7 +102,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         "CHANGE PASSWORD",
                         style: TextStyle(color: Colors.black, fontSize: 14),
                       ),
-                      onPressed: () {},
+                      onPressed: model.checkPassword,
                     ),
                   ),
                 ],
