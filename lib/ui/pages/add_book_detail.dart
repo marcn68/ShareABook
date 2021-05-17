@@ -57,107 +57,116 @@ class _AddBookDetailState extends State<AddBookDetail> {
           ),
           body: Padding(
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 40.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Center(
-                  child: Image.network(widget.book.cover, scale: 1.2),
-                ),
-                SizedBox(height: 5),
-                Center(
-                  child: Text(
-                    widget.book.title,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "by ${widget.book.authors[0]}",
-                    style: TextStyle(fontSize: 12),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "First Published in ${widget.book.publishDate}",
-                    style: TextStyle(fontSize: 12),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "${widget.book.numberOfPages} Pages",
-                    style: TextStyle(fontSize: 12),
-                  ),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Divider(
-                  height: 1,
-                  color: Color(0xff707070),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Text(
-                  "Selling Price",
-                  style: TextStyle(fontSize: 16),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Expanded(
-                  child: TextField(
-                    style: TextStyle(fontSize: 14.0),
-                    controller: model.priceController,
-                    decoration: InputDecoration(
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Icon(
-                          Icons.monetization_on_outlined,
-                        ),
+            child: SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height - 125,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Center(
+                      child: Container(
+                          height: 200,
+                          width: 200,
+                          child: Image.network(widget.book.cover, scale: 1.2)),
+                    ),
+                    SizedBox(height: 5),
+                    Center(
+                      child: Text(
+                        widget.book.title,
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 3.0, color: Constants.PRIMARY_ORANGE),
-                          borderRadius: BorderRadius.circular(20.0)),
-                      labelStyle: TextStyle(fontSize: 14.0),
-                      labelText: "Price",
-                      hintText: "Example: 20000LL",
-                      hintStyle: TextStyle(fontSize: 14.0),
-                      helperText: "All prices are in Lebanese Pound",
-                      helperStyle: TextStyle(fontSize: 10.0),
                     ),
-                    keyboardType: TextInputType.number,
-                    //onSubmitted: () {},
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Book Condition",
-                  style: TextStyle(fontSize: 16),
-                ),
-                ConditionDropDown(
-                  updateCondition: updateCondition,
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                Center(
-                  child: ElevatedButton(
-                    child: Text(
-                      "ADD BOOK",
-                      style: TextStyle(color: Colors.black, fontSize: 14),
+                    Center(
+                      child: Text(
+                        "by ${widget.book.authors[0]}",
+                        style: TextStyle(fontSize: 12),
+                      ),
                     ),
-                    onPressed: () {
-                      model.sendBookInfo(
-                        widget.book,
-                      );
-                    },
-                  ),
+                    Center(
+                      child: Text(
+                        "First Published in ${widget.book.publishDate}",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        "${widget.book.numberOfPages} Pages",
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Divider(
+                      height: 1,
+                      color: Color(0xff707070),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "Selling Price",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Expanded(
+                      child: TextField(
+                        style: TextStyle(fontSize: 14.0),
+                        controller: model.priceController,
+                        decoration: InputDecoration(
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: Icon(
+                              Icons.monetization_on_outlined,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 3.0, color: Constants.PRIMARY_ORANGE),
+                              borderRadius: BorderRadius.circular(20.0)),
+                          labelStyle: TextStyle(fontSize: 14.0),
+                          labelText: "Price",
+                          hintText: "Example: 20000LL",
+                          hintStyle: TextStyle(fontSize: 14.0),
+                          helperText: "All prices are in Lebanese Pound",
+                          helperStyle: TextStyle(fontSize: 10.0),
+                        ),
+                        keyboardType: TextInputType.number,
+                        //onSubmitted: () {},
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Book Condition",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    ConditionDropDown(
+                      updateCondition: updateCondition,
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Center(
+                      child: ElevatedButton(
+                        child: Text(
+                          "ADD BOOK",
+                          style: TextStyle(color: Colors.black, fontSize: 14),
+                        ),
+                        onPressed: () {
+                          model.sendBookInfo(
+                            widget.book,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
