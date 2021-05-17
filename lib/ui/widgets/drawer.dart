@@ -2,9 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:share_a_book/app/app.router.dart';
-import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/view_models/change_password_viewmodel.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
@@ -108,7 +106,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   ),
                   onTap: () async {
                     await serviceLocator<NavigationService>()
-                    .navigateTo(Routes.myApp);
+                        .navigateTo(Routes.myApp);
                   },
                 ),
                 ListTile(
@@ -125,7 +123,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   ),
                   onTap: () async {
                     await serviceLocator<NavigationService>()
-                    .navigateTo(Routes.virtualBookshelfScreen);
+                        .navigateTo(Routes.virtualBookshelfScreen);
                   },
                 ),
                 ListTile(
@@ -142,23 +140,28 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   ),
                   onTap: () {},
                 ),
-                ListTile(
-                  dense: true,
-                  leading: Icon(
-                    Icons.lock,
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    'Change Your Password',
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-                  onTap: () async {
-                    await serviceLocator<NavigationService>()
-                        .navigateTo(Routes.changePassword);
-                  },
-                ),
+                user.provider == "password"
+                    ? ListTile(
+                        dense: true,
+                        leading: Icon(
+                          Icons.lock,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Change Your Password',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        onTap: () async {
+                          await serviceLocator<NavigationService>()
+                              .navigateTo(Routes.changePassword);
+                        },
+                      )
+                    : Visibility(
+                        visible: false,
+                        child: Text(""),
+                      ),
                 ListTile(
                   dense: true,
                   leading: Icon(
