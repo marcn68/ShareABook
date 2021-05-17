@@ -42,12 +42,8 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: Column(children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(0, 30, 0, 50),
-              child: Icon(
-                Icons.book_online,
-                color: Colors.white,
-                size: 150,
-              ),
+              padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+              child: Image.asset("assets/logo.png", scale: 2.2),
             ),
             CustomLabel(
                 text:
