@@ -7,6 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ChangePasswordViewModel extends ChangeNotifier {
   final UserService _userService = serviceLocator<UserService>();
+  final SnackbarService _snackbarService = serviceLocator<SnackbarService>();
 
   String msg;
   SnackBar snackBar;
@@ -36,6 +37,7 @@ class ChangePasswordViewModel extends ChangeNotifier {
     } else {
       msg = "Your passwords do not match";
     }
+    _snackbarService.showSnackbar(message: msg);
     notifyListeners();
   }
 }

@@ -104,9 +104,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                       ),
                       onPressed: () {
                         model.checkPassword();
-                        model.snackBar = SnackBar(content: Text(model.msg));
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(model.snackBar);
+                        // model.snackBar = SnackBar(content: Text(model.msg));
+                        // ScaffoldMessenger.of(context)
+                        //     .showSnackBar(model.snackBar);
                       },
                     ),
                   ),
