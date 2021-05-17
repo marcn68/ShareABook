@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:share_a_book/app/app.router.dart';
-import 'package:share_a_book/business_logic/models/book_document.dart';
 import 'package:share_a_book/business_logic/models/order.dart';
-import 'package:share_a_book/services/service_locator.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class OrderCardItem extends StatelessWidget {
   const OrderCardItem({Key key, this.order}) : super(key: key);
@@ -13,9 +9,7 @@ class OrderCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-
-      },
+      onTap: () async {},
       child: Card(
         child: Row(
           children: <Widget>[

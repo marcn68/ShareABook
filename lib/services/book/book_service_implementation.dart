@@ -12,7 +12,7 @@ class BookServiceImplementation implements BookService {
   WebApi _webApi = serviceLocator<WebApi>();
   BackendApi _backendApi = serviceLocator<BackendApi>();
 
-  List<Book> books = [];
+  List<BookDocument> bookDocuments = [];
 
   @override
   Future<List<Book>> getBooksByISBN(isbn) async {
@@ -27,9 +27,9 @@ class BookServiceImplementation implements BookService {
   }
 
   @override
-  Future<List<Book>> popularBooks() async {
-    books = await _backendApi.getPopularBooks();
-    return books;
+  Future<List<BookDocument>> popularBooks() async {
+    bookDocuments = await _backendApi.getPopularBooks();
+    return bookDocuments;
   }
 
   @override
@@ -44,8 +44,13 @@ class BookServiceImplementation implements BookService {
   }
 
   @override
-  Future<List<Book>> userBookList() async {
-    // books = await _backendApi.getLoggedInUserBooks();
-    // return books;
+  Future<List<BookDocument>> userBookList() async {
+    bookDocuments = await _backendApi.getLoggedInUserBooks();
+    return bookDocuments;
+  }
+
+  @override
+  Future updateBook(bookDocument) async {
+    await _backendApi.updateBook(bookDocument);
   }
 }

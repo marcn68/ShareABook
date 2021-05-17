@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_a_book/app/app.router.dart';
-import 'package:share_a_book/business_logic/view_models/change_password_viewmodel.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
@@ -179,7 +178,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   ),
                   onTap: () async {
                     await serviceLocator<NavigationService>()
-                    .navigateTo(Routes.aboutUsScreen);
+                        .navigateTo(Routes.aboutUsScreen);
                   },
                 ),
                 ListTile(

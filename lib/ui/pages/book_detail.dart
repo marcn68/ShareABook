@@ -21,8 +21,10 @@ class _BookDetailState extends State<BookDetail> {
 
   @override
   void initState() {
-    print(widget.bookDocument.userBook.userId);
     model.getUserFromDatabase(widget.bookDocument.userBook.userId);
+    model.popularityCounter = widget.bookDocument.userBook.book.popularity;
+    model.popularityCounter++;
+    model.updateBook(widget.bookDocument);
     super.initState();
   }
 

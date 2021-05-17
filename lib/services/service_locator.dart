@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/book_detail_viewmodel.dart';
