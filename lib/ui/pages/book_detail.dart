@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/business_logic/models/book_document.dart';
 import 'package:share_a_book/business_logic/view_models/book_detail_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 // ignore: must_be_immutable
 class BookDetail extends StatefulWidget {
@@ -116,7 +118,24 @@ class _BookDetailState extends State<BookDetail> {
                 Expanded(
                   child: Card(
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () async {
+                        await serviceLocator<NavigationService>().navigateTo(
+                            Routes.userDetail,
+                            arguments: UserDetailArguments(user: model.user));
+                      },
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey[400],
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.grey[800],
+                            size: 40,
+                          ),
+                        ),
+                      ),
                       title: Text(
                         "${model.user.fullName}",
                         style: TextStyle(fontSize: 16),
