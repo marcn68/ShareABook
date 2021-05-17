@@ -6,9 +6,11 @@ abstract class BookService {
   // Create a new Book Object
   Future<bool> sendBookInfo(book);
   // Get a list of the most popular books
-  Future<List<Book>> popularBooks();
+  Future<List<BookDocument>> popularBooks();
   // Get a list of all the user books
-  Future<List<Book>> userBookList();
+  Future<List<BookDocument>> userBookList();
   // Get a list of all the books based on the search query
   Future<List<BookDocument>> searchBookByTerm(searchTerm);
+
+  Future updateBook(bookDocument);
 }
