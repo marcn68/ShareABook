@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/home_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-import 'package:share_a_book/ui/widgets/book_list_view.dart';
+import 'package:share_a_book/ui/widgets/book_detail_list_view.dart';
 import 'package:share_a_book/ui/widgets/custom_label.dart';
 import 'package:share_a_book/ui/widgets/trending_genres_item.dart';
 
@@ -49,7 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(height: 24),
                         CustomLabel(text: "Popular Books ", fontSize: 22.0),
                         SizedBox(height: 24),
-                        BookListView(books: popularBooksModel.books, priceDisplay: true)
+                        BookDetailListView(
+                            bookDocuments: popularBooksModel.bookDocuments)
                       ]),
                     )) // This trailing comma makes auto-formatting nicer for build methods.
                 )));
