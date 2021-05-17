@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:share_a_book/business_logic/models/book.dart';
+import 'package:share_a_book/business_logic/models/book_document.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/services/web_api/backend_api.dart';
@@ -12,7 +13,7 @@ class BackendApiImplementation implements BackendApi {
   final _host = "share-a-book.herokuapp.com";
   final _path = "book";
 
-  List<Book> _books;
+  List<BookDocument> _bookDocuments;
 
   Future<Map<String, String>> get header async {
     token = await _authService.getCurrentUserToken();
@@ -43,23 +44,35 @@ class BackendApiImplementation implements BackendApi {
   }
 
   @override
-  Future<List<Book>> getPopularBooks() async {
-    /*To change*/
-    final uri = Uri.https(_host, _path + '/booksOfTheWeek');
-    var response = await http.get(uri, headers: await header);
-    final jsonObject = json.decode(response.body);
-    _books = jsonObject;
-    return _books;
+  Future updateBook(BookDocument bookDocument) async {
+    final bookDocumentJson = bookDocument.toJson();
+    final response =
+        await http.put(Uri.https(_host, _path + '/${bookDocument.objectID}'),
+            headers: await header,
+            body: jsonEncode(<String, dynamic>{
+              'bookDocument': bookDocumentJson,
+            }));
   }
 
   @override
-  Future<List<Book>> getLoggedInUserBooks(userId) async {
-    /*To change*/
-    var queryParameters = {'id': userId};
-    final uri = Uri.https(_host, _path, queryParameters);
+  Future<List<BookDocument>> getPopularBooks() async {
+    final uri = Uri.https(_host, _path + '/popular');
     var response = await http.get(uri, headers: await header);
     final jsonObject = json.decode(response.body);
-    _books = jsonObject;
-    return _books;
+    _bookDocuments = jsonObject["bookDocuments"]
+        .map<BookDocument>((json) => BookDocument.fromJson(json))
+        .toList();
+    return _bookDocuments;
+  }
+
+  @override
+  Future<List<BookDocument>> getLoggedInUserBooks() async {
+    final uri = Uri.https(_host, _path + '/user');
+    var response = await http.get(uri, headers: await header);
+    final jsonObject = json.decode(response.body);
+    _bookDocuments = jsonObject["bookDocuments"]
+        .map<BookDocument>((json) => BookDocument.fromJson(json))
+        .toList();
+    return _bookDocuments;
   }
 }
