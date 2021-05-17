@@ -102,12 +102,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         "CHANGE PASSWORD",
                         style: TextStyle(color: Colors.black, fontSize: 14),
                       ),
-                      onPressed: () {
-                        model.checkPassword();
-                        // model.snackBar = SnackBar(content: Text(model.msg));
-                        // ScaffoldMessenger.of(context)
-                        //     .showSnackBar(model.snackBar);
-                      },
+                      onPressed: model.checkPassword,
                     ),
                   ),
                 ],

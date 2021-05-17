@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/services/user/user_service.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -10,12 +9,9 @@ class ChangePasswordViewModel extends ChangeNotifier {
   final SnackbarService _snackbarService = serviceLocator<SnackbarService>();
 
   String msg;
-  SnackBar snackBar;
   TextEditingController oldPassController;
   TextEditingController newPassController;
   TextEditingController confirmPassController;
-
-  //void checkOldPass() {}
 
   void checkPassword() async {
     if (newPassController.text.toString() ==
