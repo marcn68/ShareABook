@@ -17,21 +17,25 @@ class ChangePasswordViewModel extends ChangeNotifier {
     if (newPassController.text.toString() ==
         confirmPassController.text.toString()) {
       try {
-        dynamic response = await _userService.changePassword(
+        await _userService.changePassword(
             newPassword: newPassController.text.toString(),
             oldPassword: oldPassController.text.toString());
         msg = "Password Changed Succesfully";
-        print(response);
         oldPassController.clear();
         newPassController.clear();
         confirmPassController.clear();
         //await serviceLocator<NavigationService>().navigateTo(Routes.myApp);
       } catch (e) {
         msg = e.toString();
+        oldPassController.clear();
+        newPassController.clear();
+        confirmPassController.clear();
         print(e.toString());
       }
     } else {
       msg = "Your passwords do not match";
+      newPassController.clear();
+      confirmPassController.clear();
     }
     _snackbarService.showSnackbar(message: msg);
     notifyListeners();
