@@ -27,6 +27,7 @@ class AddBookViewModel extends ChangeNotifier {
   void sendBookInfo(Book book) async {
     book.price = int.parse(priceController.text.toString());
     book.condition = condition;
+    book.popularity = 0;
 
     response = await _bookAddService.sendBookInfo(book);
     if (response) {
