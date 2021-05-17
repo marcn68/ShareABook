@@ -6,6 +6,7 @@ import 'package:share_a_book/business_logic/view_models/change_password_viewmode
 import 'package:share_a_book/business_logic/view_models/find_book_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/home_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/login_viewmodel.dart';
+import 'package:share_a_book/business_logic/view_models/orders_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/register_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/user_detail_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/virtual_bookshelf_viewmodel.dart';
@@ -13,6 +14,8 @@ import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/authentication/auth_service_firebase.dart';
 import 'package:share_a_book/services/book/book_service.dart';
 import 'package:share_a_book/services/database/database_service.dart';
+import 'package:share_a_book/services/order/order_service.dart';
+import 'package:share_a_book/services/order/order_service_implementation.dart';
 import 'package:share_a_book/services/user/user_service.dart';
 import 'package:share_a_book/services/user/user_service_firebase.dart';
 import 'package:share_a_book/services/web_api/backend_api.dart';
@@ -44,6 +47,9 @@ void setupServiceLocator() {
   serviceLocator
       .registerLazySingleton<SnackbarService>(() => SnackbarService());
 
+  serviceLocator
+      .registerLazySingleton<OrderService>(() => OrderServiceImplementation());
+
   //view models registrations
   serviceLocator.registerFactory<AddBookViewModel>(() => AddBookViewModel());
   //serviceLocator.registerFactory<AddBookViewModel>(() => AddBookViewModel());
@@ -67,4 +73,6 @@ void setupServiceLocator() {
       .registerFactory<BookDetailViewModel>(() => BookDetailViewModel());
   serviceLocator
       .registerLazySingleton<UserDetailViewModel>(() => UserDetailViewModel());
+
+  serviceLocator.registerFactory<OrdersViewModel>(() => OrdersViewModel());
 }

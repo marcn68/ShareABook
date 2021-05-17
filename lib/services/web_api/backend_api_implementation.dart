@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:share_a_book/business_logic/models/book.dart';
+import 'package:share_a_book/business_logic/models/order.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/services/web_api/backend_api.dart';
@@ -61,5 +62,14 @@ class BackendApiImplementation implements BackendApi {
     final jsonObject = json.decode(response.body);
     _books = jsonObject;
     return _books;
+  }
+
+  @override
+  Future<List<Order>> getOrders() async {
+    /*To change*/
+    final uri = Uri.https(_host, _path + '/orders');
+    var response = await http.get(uri, headers: await header);
+    final jsonObject = json.decode(response.body);
+    return jsonObject;
   }
 }

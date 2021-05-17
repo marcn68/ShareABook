@@ -138,7 +138,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       fontSize: 14,
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () async {
+                    await serviceLocator<NavigationService>()
+                        .navigateTo(Routes.ordersScreen);
+                  },
                 ),
                 user.provider == "password"
                     ? ListTile(
@@ -174,7 +177,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       fontSize: 14,
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () async {
+                    await serviceLocator<NavigationService>()
+                    .navigateTo(Routes.aboutUsScreen);
+                  },
                 ),
                 ListTile(
                   dense: true,
