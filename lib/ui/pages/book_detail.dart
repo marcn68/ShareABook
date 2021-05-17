@@ -158,7 +158,10 @@ class _BookDetailState extends State<BookDetail> {
                       "Buy Book",
                       style: TextStyle(color: Colors.black, fontSize: 14),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await serviceLocator<NavigationService>().navigateTo(Routes.checkoutScreen,
+                      arguments: BookDetailArguments(bookDocument: widget.bookDocument));
+                    },
                   ),
                 ),
               ],

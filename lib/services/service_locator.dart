@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/book_detail_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/change_password_viewmodel.dart';
+import 'package:share_a_book/business_logic/view_models/checkout_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/find_book_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/home_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/login_viewmodel.dart';
@@ -74,4 +75,5 @@ void setupServiceLocator() {
       .registerLazySingleton<UserDetailViewModel>(() => UserDetailViewModel());
 
   serviceLocator.registerFactory<OrdersViewModel>(() => OrdersViewModel());
+  serviceLocator.registerFactory<CheckoutViewModel>(() => CheckoutViewModel());
 }

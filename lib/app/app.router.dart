@@ -17,6 +17,7 @@ import '../ui/pages/about_us.dart';
 import '../ui/pages/add_book_detail.dart';
 import '../ui/pages/book_detail.dart';
 import '../ui/pages/change_password.dart';
+import '../ui/pages/checkout.dart';
 import '../ui/pages/find_book.dart';
 import '../ui/pages/home.dart';
 import '../ui/pages/orders.dart';
@@ -37,8 +38,9 @@ static const String virtualBookshelfScreen = '/virtual-bookshelf-screen';
 static const String userDetail = '/user-detail';
 static const String aboutUsScreen = '/about-us-screen';
 static const String ordersScreen = '/orders-screen';
+static const String checkoutScreen = '/checkout-screen';
 static const all = <String>{
-myApp,myHomePage,authenticateWrapper,changePassword,addBookDetail,findBook,registerScreen,bookDetail,homeScreen,virtualBookshelfScreen,userDetail,aboutUsScreen,ordersScreen,};}
+myApp,myHomePage,authenticateWrapper,changePassword,addBookDetail,findBook,registerScreen,bookDetail,homeScreen,virtualBookshelfScreen,userDetail,aboutUsScreen,ordersScreen,checkoutScreen,};}
 
 class StackedRouter extends RouterBase {
      @override
@@ -85,6 +87,9 @@ RouteDef(Routes.aboutUsScreen
 RouteDef(Routes.ordersScreen
 ,page: OrdersScreen
 ),
+RouteDef(Routes.checkoutScreen
+,page: CheckoutScreen
+),
 ];       @override
        Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
         final _pagesMap = <Type, StackedRouteFactory>{
@@ -121,6 +126,8 @@ orElse: ()=> UserDetailArguments(),);return MaterialPageRoute<dynamic>(builder: 
 return MaterialPageRoute<dynamic>(builder: (context) =>   AboutUsScreen(), settings: data,);
 },OrdersScreen: (data) {
 return MaterialPageRoute<dynamic>(builder: (context) =>   OrdersScreen(), settings: data,);
+},CheckoutScreen: (data) {
+return MaterialPageRoute<dynamic>(builder: (context) =>   CheckoutScreen(), settings: data,);
 },};}
 
 /// ************************************************************************
