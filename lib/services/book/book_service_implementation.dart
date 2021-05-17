@@ -14,7 +14,6 @@ class BookServiceImplementation implements BookService {
   BackendApi _backendApi = serviceLocator<BackendApi>();
 
   List<Book> books = [];
-  List<Order> orders = [];
 
   @override
   Future<List<Book>> getBooksByISBN(isbn) async {
