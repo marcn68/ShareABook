@@ -21,13 +21,14 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  flutter_credit_card:
   flutter:
     sdk: flutter
   algolia: ^1.0.1
+  bubble: ^1.2.1
   cloud_firestore: ^2.1.0
   firebase_auth: ^1.1.4
   firebase_core: ^1.1.1
+  flutter_credit_card: null
   flutter_email_sender: ^5.0.0
   flutter_facebook_auth: ^3.3.3+1
   fluttertoast: ^8.0.6
