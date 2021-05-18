@@ -19,6 +19,7 @@ import '../ui/pages/book_detail.dart';
 import '../ui/pages/change_password.dart';
 import '../ui/pages/chat_page.dart';
 import '../ui/pages/checkout.dart';
+import '../ui/pages/conversation_list_page.dart';
 import '../ui/pages/find_book.dart';
 import '../ui/pages/home.dart';
 import '../ui/pages/orders.dart';
@@ -42,6 +43,7 @@ class Routes {
   static const String ordersScreen = '/orders-screen';
   static const String checkoutScreen = '/checkout-screen';
   static const String chat = '/Chat';
+  static const String conversationList = '/conversation-list';
   static const all = <String>{
     myApp,
     myHomePage,
@@ -58,6 +60,7 @@ class Routes {
     ordersScreen,
     checkoutScreen,
     chat,
+    conversationList,
   };
 }
 
@@ -80,6 +83,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.ordersScreen, page: OrdersScreen),
     RouteDef(Routes.checkoutScreen, page: CheckoutScreen),
     RouteDef(Routes.chat, page: Chat),
+    RouteDef(Routes.conversationList, page: ConversationList),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -211,6 +215,12 @@ class StackedRouter extends RouterBase {
           contact: args.contact,
           convoID: args.convoID,
         ),
+        settings: data,
+      );
+    },
+    ConversationList: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ConversationList(),
         settings: data,
       );
     },
