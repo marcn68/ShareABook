@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/business_logic/models/book_document.dart';
+import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/view_models/book_detail_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
@@ -30,6 +31,7 @@ class _BookDetailState extends State<BookDetail> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<AppUser>(context);
     return ChangeNotifierProvider<BookDetailViewModel>(
       create: (context) => model,
       child: Consumer<BookDetailViewModel>(
@@ -117,13 +119,15 @@ class _BookDetailState extends State<BookDetail> {
                 SizedBox(
                   height: 15,
                 ),
-                Expanded(
+                Flexible(
                   child: Card(
                     child: ListTile(
                       onTap: () async {
-                        await serviceLocator<NavigationService>().navigateTo(
-                            Routes.userDetail,
-                            arguments: UserDetailArguments(user: model.user));
+                        if (user.uid != widget.bookDocument.userBook.userId) {
+                          await serviceLocator<NavigationService>().navigateTo(
+                              Routes.userDetail,
+                              arguments: UserDetailArguments(user: model.user));
+                        }
                       },
                       leading: CircleAvatar(
                         backgroundColor: Colors.white,
@@ -152,18 +156,29 @@ class _BookDetailState extends State<BookDetail> {
                 SizedBox(
                   height: 20,
                 ),
-                Center(
-                  child: ElevatedButton(
-                    child: Text(
-                      "Buy Book",
-                      style: TextStyle(color: Colors.black, fontSize: 14),
-                    ),
-                    onPressed: () async {
-                      await serviceLocator<NavigationService>().navigateTo(Routes.checkoutScreen,
-                      arguments: BookDetailArguments(bookDocument: widget.bookDocument));
-                    },
-                  ),
-                ),
+                user.uid == widget.bookDocument.userBook.userId
+                    ? Visibility(
+                        visible: false,
+                        child: Center(
+                          child: ElevatedButton(
+                            child: Text(
+                              "Buy Book",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 14),
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+                      )
+                    : Center(
+                        child: ElevatedButton(
+                          child: Text(
+                            "Buy Book",
+                            style: TextStyle(color: Colors.black, fontSize: 14),
+                          ),
+                          onPressed: () {},
+                        ),
+                      )
               ],
             ),
           ),
