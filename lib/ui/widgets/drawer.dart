@@ -142,6 +142,23 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         .navigateTo(Routes.ordersScreen);
                   },
                 ),
+                ListTile(
+                  dense: true,
+                  leading: Icon(
+                    Icons.chat,
+                    color: Colors.black,
+                  ),
+                  title: Text(
+                    'Chats',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  onTap: () async {
+                    await serviceLocator<NavigationService>()
+                        .navigateTo(Routes.conversationList);
+                  },
+                ),
                 user.provider == "password"
                     ? ListTile(
                         dense: true,
