@@ -31,5 +31,6 @@ import 'package:stacked/stacked_annotations.dart';
   MaterialRoute(page: CheckoutScreen),
   MaterialRoute(page: Chat),
   MaterialRoute(page: ConversationList),
+  MaterialRoute(page: ConversationsWrapper),
 ])
 class AppSetup {}

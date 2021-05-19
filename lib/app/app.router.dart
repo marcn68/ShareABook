@@ -44,6 +44,7 @@ class Routes {
   static const String checkoutScreen = '/checkout-screen';
   static const String chat = '/Chat';
   static const String conversationList = '/conversation-list';
+  static const String conversationsWrapper = '/conversations-wrapper';
   static const all = <String>{
     myApp,
     myHomePage,
@@ -61,6 +62,7 @@ class Routes {
     checkoutScreen,
     chat,
     conversationList,
+    conversationsWrapper,
   };
 }
 
@@ -84,6 +86,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.checkoutScreen, page: CheckoutScreen),
     RouteDef(Routes.chat, page: Chat),
     RouteDef(Routes.conversationList, page: ConversationList),
+    RouteDef(Routes.conversationsWrapper, page: ConversationsWrapper),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -221,6 +224,12 @@ class StackedRouter extends RouterBase {
     ConversationList: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => ConversationList(),
+        settings: data,
+      );
+    },
+    ConversationsWrapper: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ConversationsWrapper(),
         settings: data,
       );
     },
