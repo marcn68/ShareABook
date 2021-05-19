@@ -16,6 +16,8 @@ import 'package:share_a_book/services/book/book_service.dart';
 import 'package:share_a_book/services/database/database_service.dart';
 import 'package:share_a_book/services/order/order_service.dart';
 import 'package:share_a_book/services/order/order_service_implementation.dart';
+import 'package:share_a_book/services/payment/payment_service.dart';
+import 'package:share_a_book/services/payment/payment_service_stripe.dart';
 import 'package:share_a_book/services/user/user_service.dart';
 import 'package:share_a_book/services/user/user_service_firebase.dart';
 import 'package:share_a_book/services/web_api/backend_api.dart';
@@ -32,6 +34,8 @@ GetIt serviceLocator = GetIt.instance;
 void setupServiceLocator() {
   //services registrations
   serviceLocator.registerLazySingleton<WebApi>(() => WebApiImplementation());
+  serviceLocator
+      .registerLazySingleton<PaymentService>(() => PaymentServiceStripe());
   serviceLocator
       .registerLazySingleton<NavigationService>(() => NavigationService());
   serviceLocator
