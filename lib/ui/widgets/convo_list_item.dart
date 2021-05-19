@@ -10,12 +10,12 @@ import 'package:stacked_services/stacked_services.dart';
 class ConvoListItem extends StatelessWidget {
   ConvoListItem(
       {Key key,
-      @required this.user,
+      @required this.appUser,
       @required this.peer,
       @required this.lastMessage})
       : super(key: key);
 
-  final User user;
+  final AppUser appUser;
   final AppUser peer;
   Map<dynamic, dynamic> lastMessage;
 
@@ -25,7 +25,7 @@ class ConvoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (lastMessage['idFrom'] == user.uid) {
+    if (lastMessage['idFrom'] == appUser.uid) {
       read = true;
     } else {
       read = lastMessage['read'] == null ? true : lastMessage['read'];
@@ -49,7 +49,7 @@ class ConvoListItem extends StatelessWidget {
       onTap: () async {
         await serviceLocator<NavigationService>().navigateTo(Routes.chat,
             arguments: ChatArguments(
-                uid: user.uid, contact: peer, convoID: getGroupChatId()));
+                uid: appUser.uid, contact: peer, convoID: getGroupChatId()));
         // Navigator.of(context).pushReplacement(MaterialPageRoute(
         //     builder: (BuildContext context) => NewConversationScreen(
         //         uid: user.uid, contact: peer, convoID: getGroupChatId())));
@@ -138,10 +138,10 @@ class ConvoListItem extends StatelessWidget {
   }
 
   String getGroupChatId() {
-    if (user.uid.hashCode <= peer.uid.hashCode) {
-      return user.uid + '_' + peer.uid;
+    if (appUser.uid.hashCode <= peer.uid.hashCode) {
+      return appUser.uid + '_' + peer.uid;
     } else {
-      return peer.uid + '_' + user.uid;
+      return peer.uid + '_' + appUser.uid;
     }
   }
 }
