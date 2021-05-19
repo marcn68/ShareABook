@@ -9,6 +9,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class UserDetail extends StatefulWidget {
   AppUser user;
+
   UserDetail({Key key, this.user}) : super(key: key);
 
   @override

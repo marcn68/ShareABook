@@ -14,6 +14,7 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
   OrdersViewModel ordersViewModel = serviceLocator<OrdersViewModel>();
+
   @override
   void initState() {
     ordersViewModel.getOrders();

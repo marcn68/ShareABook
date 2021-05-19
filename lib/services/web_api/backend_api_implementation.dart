@@ -79,7 +79,6 @@ class BackendApiImplementation implements BackendApi {
 
   @override
   Future<List<Order>> getOrders() async {
-    /*To change*/
     final uri = Uri.https(_host, _path + '/orders');
     var response = await http.get(uri, headers: await header);
     final jsonObject = json.decode(response.body);

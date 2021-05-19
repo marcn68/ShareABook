@@ -256,13 +256,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         .getImage(source: ImageSource.camera, imageQuality: 50);
 
     File _image = File(image.path);
-    // String dir = path.dirname(image.path);
-    // String newPath = path.join(dir, widget.contact.id.toString() + '.jpg');
-    // File file = new File(newPath);
-    // if (file.existsSync()) {
-    //   file.deleteSync();
-    // }
-    // image.renameSync(newPath);
 
     setState(() {
       _pickedImage = _image;
@@ -270,17 +263,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   }
 
   _imgFromGallery() async {
-    // ignore: deprecated_member_use
     PickedFile image = await ImagePicker()
         .getImage(source: ImageSource.gallery, imageQuality: 50);
 
     File _image = File(image.path);
-
-    //String dir = path.dirname(image.path);
-    // String newPath = path.join(dir, widget.contact.id.toString() + '.jpg');
-    // image.renameSync(newPath);
-
-    // File file = new File(newPath);
 
     setState(() {
       _pickedImage = _image;

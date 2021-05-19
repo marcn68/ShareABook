@@ -5,11 +5,8 @@ import 'package:share_a_book/services/service_locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class BookCardItem extends StatelessWidget {
-  const BookCardItem({
-    Key key,
-    this.book,
-    this.priceDisplay = false
-  }) : super(key: key);
+  const BookCardItem({Key key, this.book, this.priceDisplay = false})
+      : super(key: key);
 
   final Book book;
   final bool priceDisplay;
@@ -60,10 +57,12 @@ class BookCardItem extends StatelessWidget {
                     "${book.numberOfPages} Pages",
                     style: TextStyle(fontSize: 12),
                   ),
-                  priceDisplay ? Text(
-                    "Price: ${book.price} ",
-                    style: TextStyle(fontSize: 12),
-                  ) : Text("")
+                  priceDisplay
+                      ? Text(
+                          "Price: ${book.price} ",
+                          style: TextStyle(fontSize: 12),
+                        )
+                      : Text("")
                 ],
               ),
             )

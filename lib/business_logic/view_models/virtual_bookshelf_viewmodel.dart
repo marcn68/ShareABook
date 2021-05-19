@@ -5,7 +5,6 @@ import 'package:share_a_book/services/web_api/backend_api.dart';
 
 class VirtualBookshelfViewModel extends ChangeNotifier {
   BackendApi _backendApi = serviceLocator<BackendApi>();
-  //final _auth = FirebaseAuth.instance;
 
   List<BookDocument> _bookDocuments = [];
 
@@ -14,7 +13,6 @@ class VirtualBookshelfViewModel extends ChangeNotifier {
   }
 
   Future getLoggedInUserBooks() async {
-    //final user = _auth.currentUser;
     _bookDocuments = await _backendApi.getLoggedInUserBooks();
     notifyListeners();
   }
