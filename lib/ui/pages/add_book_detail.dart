@@ -160,7 +160,7 @@ class _AddBookDetailState extends State<AddBookDetail> {
                           style: TextStyle(color: Colors.black, fontSize: 14),
                         ),
                         onPressed: () async {
-                          model.sendBookInfo(
+                          await model.sendBookInfo(
                             widget.book,
                           );
                           await serviceLocator<NavigationService>()
