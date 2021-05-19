@@ -83,11 +83,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 height: 42.0,
                                 child: CustomButton(
                                     text: "Buy",
-                                    onPressed: () {
+                                    onPressed: () async {
                                       if (checkoutViewModel.formKey.currentState
                                           .validate()) {
                                         print('valid!');
-                                        print(checkoutViewModel.cardNumber);
+                                        await model.pay();
                                       } else {
                                         print('invalid!');
                                       }
