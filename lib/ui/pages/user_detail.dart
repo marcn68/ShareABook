@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/view_models/user_detail_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class UserDetail extends StatefulWidget {
   AppUser user;
@@ -23,6 +25,7 @@ class _UserDetailState extends State<UserDetail> {
 
   @override
   Widget build(BuildContext context) {
+    final loggedUser = Provider.of<AppUser>(context);
     return ChangeNotifierProvider<UserDetailViewModel>(
       create: (context) => model,
       child: Consumer<UserDetailViewModel>(
@@ -103,7 +106,16 @@ class _UserDetailState extends State<UserDetail> {
                       "Chat",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      String convoId = model.createConversation(
+                          loggedUser.uid, widget.user.uid);
+                      await serviceLocator<NavigationService>().navigateTo(
+                          Routes.chat,
+                          arguments: ChatArguments(
+                              uid: loggedUser.uid,
+                              contact: widget.user,
+                              convoID: convoId));
+                    },
                   ),
                 ),
               ],

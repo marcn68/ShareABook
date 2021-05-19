@@ -17,6 +17,7 @@ class BookDetailViewModel extends ChangeNotifier {
     dynamic test = await _databaseService.getUserFromDatabase(uid: uid);
     user.fullName = test['fullName'];
     user.email = test['email'];
+    user.uid = uid;
     notifyListeners();
   }
 
