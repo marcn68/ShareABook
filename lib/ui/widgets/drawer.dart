@@ -105,7 +105,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   ),
                   onTap: () async {
                     await serviceLocator<NavigationService>()
-                        .navigateTo(Routes.myApp);
+                        .navigateTo(Routes.myHomePage);
                   },
                 ),
                 ListTile(
@@ -156,7 +156,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   ),
                   onTap: () async {
                     await serviceLocator<NavigationService>()
-                        .navigateTo(Routes.conversationList);
+                        .navigateTo(Routes.conversationsWrapper);
                   },
                 ),
                 user.provider == "password"
