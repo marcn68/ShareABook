@@ -24,7 +24,6 @@ class ChangePasswordViewModel extends ChangeNotifier {
         oldPassController.clear();
         newPassController.clear();
         confirmPassController.clear();
-        //await serviceLocator<NavigationService>().navigateTo(Routes.myApp);
       } catch (e) {
         msg = e.toString();
         oldPassController.clear();

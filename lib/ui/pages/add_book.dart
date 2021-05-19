@@ -90,14 +90,4 @@ class _AddBookState extends State<AddBook> {
                   ),
                 )));
   }
-
-  // Expanded bookListView(addBookViewModel) {
-  //   return Expanded(
-  //     child: ListView.builder(
-  //         itemCount: addBookViewModel.books.length,
-  //         itemBuilder: (context, index) {
-  //           return BookCardItem(books: model.books, index: index);
-  //         }),
-  //   );
-  // }
 }

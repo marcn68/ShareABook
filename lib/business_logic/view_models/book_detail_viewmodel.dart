@@ -10,7 +10,6 @@ class BookDetailViewModel extends ChangeNotifier {
   final BookService _bookService = serviceLocator<BookService>();
 
   int popularityCounter;
-  // BookDocument bookDocument;
 
   AppUser user = AppUser();
   Future getUserFromDatabase(uid) async {

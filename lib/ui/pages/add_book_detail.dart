@@ -11,6 +11,7 @@ import 'package:stacked_services/stacked_services.dart';
 // ignore: must_be_immutable
 class AddBookDetail extends StatefulWidget {
   Book book;
+
   AddBookDetail({Key key, this.book}) : super(key: key);
 
   @override

@@ -174,27 +174,3 @@ class _ChatState extends State<Chat> {
     }
   }
 }
-
-// class NewConversationScreen extends StatelessWidget {
-//   const NewConversationScreen(
-//       {@required this.uid, @required this.contact, @required this.convoID});
-//   final String uid, convoID;
-//   final AppUser contact;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//   }
-// }
-
-// class ChatScreen extends StatefulWidget {
-//   const ChatScreen(
-//       {@required this.uid, @required this.convoID, @required this.contact});
-//   final String uid, convoID;
-//   final AppUser contact;
-
-//   @override
-//   _ChatScreenState createState() => _ChatScreenState();
-// }
-
-// class _ChatScreenState extends State<ChatScreen> {}

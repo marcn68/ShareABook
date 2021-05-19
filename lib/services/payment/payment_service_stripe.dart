@@ -91,15 +91,9 @@ class PaymentServiceStripe implements PaymentService {
           await StripePayment.createPaymentMethod(PaymentMethodRequest(
         card: card,
       ));
-      // paymentMethod = await StripePayment.paymentRequestWithCardForm(
-      //   CardFormPaymentRequest(),
-      // );
-      // paymentMethod;
     } catch (err) {
       print(err);
     }
-
-    // print(paymentMethod.toString());
 
     startDirectCharge(paymentMethod);
   }

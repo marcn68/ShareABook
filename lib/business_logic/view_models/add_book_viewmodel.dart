@@ -38,18 +38,3 @@ class AddBookViewModel extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-// class BookPresentation {
-//   final int isbn;
-//   final String bookTitle;
-//   final List<String> auhtors;
-//   final publishDate;
-//   final int numberOfPages;
-
-//   BookPresentation(
-//       {this.isbn,
-//       this.bookTitle,
-//       this.auhtors,
-//       this.publishDate,
-//       this.numberOfPages});
-// }
