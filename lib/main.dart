@@ -83,7 +83,7 @@ class AuthenticateWrapper extends StatelessWidget {
     return user == null
         ? LoginScreen()
         : MyHomePage(
-            title: 'Home Page',
+            title: 'Share a Book',
           );
   }
 }
@@ -102,7 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       drawer: DrawerWidget(),
       appBar: AppBar(
-        title: Text(widget.title),
+        centerTitle: true,
+        title: Text("Share A Book"),
         backgroundColor: Constants.PRIMARY_BLUE,
         actions: <Widget>[
           IconButton(

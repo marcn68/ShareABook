@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/change_password_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
+import 'package:share_a_book/ui/widgets/drawer.dart';
 
 class ChangePassword extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         create: (context) => model,
         child: Consumer<ChangePasswordViewModel>(
           builder: (context, model, child) => Scaffold(
+            drawer: DrawerWidget(),
             backgroundColor: Constants.SECONDARY_BLUE,
             appBar: AppBar(
               title: Text(

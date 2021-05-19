@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:share_a_book/business_logic/view_models/orders_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
+import 'package:share_a_book/ui/widgets/drawer.dart';
 import 'package:share_a_book/ui/widgets/order_list_view.dart';
 
 class OrdersScreen extends StatefulWidget {
@@ -25,6 +26,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
         create: (context) => ordersViewModel,
         child: Consumer<OrdersViewModel>(
             builder: (context, model, child) => Scaffold(
+                drawer: DrawerWidget(),
                 backgroundColor: Constants.SECONDARY_BLUE,
                 appBar: AppBar(
                   title: Text(

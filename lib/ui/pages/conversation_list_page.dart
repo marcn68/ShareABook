@@ -5,8 +5,7 @@ import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/view_models/conversation_list_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-import 'package:share_a_book/ui/widgets/convo_list_item.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:share_a_book/ui/widgets/drawer.dart';
 
 class ConversationList extends StatefulWidget {
   @override
@@ -24,13 +23,14 @@ class _ConversationListState extends State<ConversationList> {
 
   @override
   Widget build(BuildContext context) {
-    final User firebaseUser = Provider.of<User>(context);
+    final AppUser appUser = Provider.of<AppUser>(context);
     final List<Conversation> _convos = Provider.of<List<Conversation>>(context);
     final List<AppUser> _users = Provider.of<List<AppUser>>(context);
     return ChangeNotifierProvider<ConversationListViewModel>(
       create: (context) => model,
       child: Consumer<ConversationListViewModel>(
         builder: (context, model, child) => Scaffold(
+          drawer: DrawerWidget(),
           backgroundColor: Constants.SECONDARY_BLUE,
           appBar: AppBar(
             title: Text(
@@ -43,41 +43,43 @@ class _ConversationListState extends State<ConversationList> {
           body: ListView(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            children: getWidgets(context, firebaseUser, _convos, _users),
+            children: model.getWidgets(
+              context: context,
+              user: appUser,
+              convos: _convos,
+              users: _users,
+            ),
           ),
         ),
       ),
     );
   }
+}
 
-  Map<String, AppUser> getUserMap(List<AppUser> users) {
-    final Map<String, AppUser> userMap = Map();
-    for (AppUser u in users) {
-      userMap[u.uid] = u;
-    }
-    return userMap;
-  }
+class ConversationsWrapper extends StatefulWidget {
+  @override
+  _ConversationsWrapperState createState() => _ConversationsWrapperState();
+}
 
-  List<Widget> getWidgets(BuildContext context, User user,
-      List<Conversation> _convos, List<AppUser> _users) {
-    final List<Widget> list = <Widget>[];
-    if (_convos != null && _users != null && user != null) {
-      final Map<String, AppUser> userMap = getUserMap(_users);
-      for (Conversation c in _convos) {
-        if (c.userIds[0] == user.uid) {
-          list.add(ConvoListItem(
-              user: user,
-              peer: userMap[c.userIds[1]],
-              lastMessage: c.lastMessage));
-        } else {
-          list.add(ConvoListItem(
-              user: user,
-              peer: userMap[c.userIds[0]],
-              lastMessage: c.lastMessage));
-        }
-      }
-    }
+class _ConversationsWrapperState extends State<ConversationsWrapper> {
+  final ConversationListViewModel model =
+      serviceLocator<ConversationListViewModel>();
 
-    return list;
+  @override
+  Widget build(BuildContext context) {
+    final AppUser user = Provider.of<AppUser>(context);
+    return MultiProvider(
+      providers: [
+        StreamProvider<List<Conversation>>.value(
+          initialData: null,
+          value: model.streamConversations(user.uid),
+        ),
+        StreamProvider<List<AppUser>>.value(
+          initialData: null,
+          value: model.streamUsers(),
+        ),
+      ],
+      child: ConversationList(),
+    );
   }
 }
