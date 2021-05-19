@@ -5,6 +5,7 @@ import 'package:share_a_book/business_logic/view_models/virtual_bookshelf_viewmo
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/book_detail_list_view.dart';
+import 'package:share_a_book/ui/widgets/drawer.dart';
 
 class VirtualBookshelfScreen extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _VirtualBookshelfScreenState extends State<VirtualBookshelfScreen> {
         create: (context) => virtualBookshelfModel,
         child: Consumer<VirtualBookshelfViewModel>(
             builder: (context, model, child) => Scaffold(
+                drawer: DrawerWidget(),
                 backgroundColor: Constants.SECONDARY_BLUE,
                 appBar: AppBar(
                   title: Text(

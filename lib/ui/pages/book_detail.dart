@@ -6,6 +6,7 @@ import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:share_a_book/business_logic/view_models/book_detail_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
+import 'package:share_a_book/ui/widgets/drawer.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 // ignore: must_be_immutable
@@ -36,6 +37,7 @@ class _BookDetailState extends State<BookDetail> {
       create: (context) => model,
       child: Consumer<BookDetailViewModel>(
         builder: (context, model, child) => Scaffold(
+          drawer: DrawerWidget(),
           backgroundColor: Constants.SECONDARY_BLUE,
           appBar: AppBar(
             title: Text(
