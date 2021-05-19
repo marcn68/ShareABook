@@ -164,7 +164,7 @@ class _AddBookDetailState extends State<AddBookDetail> {
                             widget.book,
                           );
                           await serviceLocator<NavigationService>()
-                              .navigateTo(Routes.myHomePage);
+                              .navigateTo(Routes.virtualBookshelfScreen);
                         },
                       ),
                     ),
