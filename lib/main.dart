@@ -14,6 +14,7 @@ import 'package:share_a_book/ui/pages/home.dart';
 import 'package:share_a_book/ui/pages/login.dart';
 import 'package:share_a_book/ui/widgets/drawer.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stripe_payment/stripe_payment.dart';
 
 class Application {
   static final Algolia algolia = Algolia.init(
@@ -28,6 +29,12 @@ void main() async {
   await Firebase.initializeApp();
 
   final bool isFirstTime = await PrefsUtils.isFirstTime();
+  StripePayment.setOptions(
+    StripeOptions(
+      publishableKey:
+          'pk_test_51IHJSxHUbkL4hqdbEuSW85X4CFx21U9chEdrqmFfefOwMJBKzPKl6ZoqTKci24h66lrwbcl9WQ6uqESKY4whRKAK00yUBUUkSE',
+    ),
+  );
   runApp(MyApp(
     isFirstTime: isFirstTime,
   ));

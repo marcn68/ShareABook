@@ -57,7 +57,7 @@ class BackendApiImplementation implements BackendApi {
 
   @override
   Future<List<BookDocument>> getPopularBooks() async {
-    final uri = Uri.https(_host, _path + '/popular');
+    final uri = Uri.https(_host, _path);
     var response = await http.get(uri, headers: await header);
     final jsonObject = json.decode(response.body);
     _bookDocuments = jsonObject["bookDocuments"]

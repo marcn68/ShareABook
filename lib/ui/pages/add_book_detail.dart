@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/business_logic/models/book.dart';
 import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
 import 'package:share_a_book/ui/widgets/condition_dropdown.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 // ignore: must_be_immutable
 class AddBookDetail extends StatefulWidget {
@@ -157,10 +159,12 @@ class _AddBookDetailState extends State<AddBookDetail> {
                           "ADD BOOK",
                           style: TextStyle(color: Colors.black, fontSize: 14),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           model.sendBookInfo(
                             widget.book,
                           );
+                          await serviceLocator<NavigationService>()
+                              .navigateTo(Routes.virtualBookshelfScreen);
                         },
                       ),
                     ),

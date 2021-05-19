@@ -89,6 +89,12 @@ class _BookDetailState extends State<BookDetail> {
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
+                Center(
+                  child: Text(
+                    "Popularity: ${model.popularityCounter}",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ),
                 SizedBox(
                   height: 10,
                 ),
@@ -176,7 +182,10 @@ class _BookDetailState extends State<BookDetail> {
                             "Buy Book",
                             style: TextStyle(color: Colors.black, fontSize: 14),
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            await serviceLocator<NavigationService>()
+                                .navigateTo(Routes.checkoutScreen);
+                          },
                         ),
                       )
               ],
