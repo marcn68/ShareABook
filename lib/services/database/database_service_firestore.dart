@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:async/async.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:share_a_book/business_logic/models/conversation.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
