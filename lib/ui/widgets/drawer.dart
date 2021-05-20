@@ -6,7 +6,6 @@ import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/services/authentication/auth_service.dart';
 import 'package:share_a_book/services/service_locator.dart';
 import 'package:share_a_book/shared/constants.dart';
-import 'package:path/path.dart' as path;
 import 'package:stacked_services/stacked_services.dart';
 
 class DrawerWidget extends StatefulWidget {

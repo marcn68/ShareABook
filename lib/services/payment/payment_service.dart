@@ -1,4 +1,3 @@
-import 'package:share_a_book/business_logic/models/user.dart';
 import 'package:stripe_payment/stripe_payment.dart';
 
 abstract class PaymentService {
