@@ -4,6 +4,7 @@ import 'package:share_a_book/ui/pages/add_book_detail.dart';
 import 'package:share_a_book/ui/pages/book_detail.dart';
 import 'package:share_a_book/ui/pages/change_password.dart';
 import 'package:share_a_book/ui/pages/chat_page.dart';
+import 'package:share_a_book/ui/pages/chatrooms.dart';
 import 'package:share_a_book/ui/pages/checkout.dart';
 import 'package:share_a_book/ui/pages/conversation_list_page.dart';
 import 'package:share_a_book/ui/pages/find_book.dart';
@@ -30,6 +31,7 @@ import 'package:stacked/stacked_annotations.dart';
   MaterialRoute(page: OrdersScreen),
   MaterialRoute(page: CheckoutScreen),
   MaterialRoute(page: Chat),
+  MaterialRoute(page: ChatRoom),
   MaterialRoute(page: ConversationList),
   MaterialRoute(page: ConversationsWrapper),
 ])

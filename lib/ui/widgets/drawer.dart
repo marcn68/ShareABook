@@ -155,7 +155,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   ),
                   onTap: () async {
                     await serviceLocator<NavigationService>()
-                        .navigateTo(Routes.conversationsWrapper);
+                        .navigateTo(Routes.chatRoom);
                   },
                 ),
                 user.provider == "password"

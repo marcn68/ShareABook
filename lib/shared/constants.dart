@@ -11,4 +11,6 @@ class Constants {
   //Different font sizes
   static const TextStyle AppBarText =
       TextStyle(fontSize: 20.0, color: Colors.white);
+
+  static String myName = "";
 }

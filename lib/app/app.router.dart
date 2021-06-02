@@ -18,6 +18,7 @@ import '../ui/pages/add_book_detail.dart';
 import '../ui/pages/book_detail.dart';
 import '../ui/pages/change_password.dart';
 import '../ui/pages/chat_page.dart';
+import '../ui/pages/chatrooms.dart';
 import '../ui/pages/checkout.dart';
 import '../ui/pages/conversation_list_page.dart';
 import '../ui/pages/find_book.dart';
@@ -43,6 +44,7 @@ class Routes {
   static const String ordersScreen = '/orders-screen';
   static const String checkoutScreen = '/checkout-screen';
   static const String chat = '/Chat';
+  static const String chatRoom = '/chat-room';
   static const String conversationList = '/conversation-list';
   static const String conversationsWrapper = '/conversations-wrapper';
   static const all = <String>{
@@ -61,6 +63,7 @@ class Routes {
     ordersScreen,
     checkoutScreen,
     chat,
+    chatRoom,
     conversationList,
     conversationsWrapper,
   };
@@ -85,6 +88,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.ordersScreen, page: OrdersScreen),
     RouteDef(Routes.checkoutScreen, page: CheckoutScreen),
     RouteDef(Routes.chat, page: Chat),
+    RouteDef(Routes.chatRoom, page: ChatRoom),
     RouteDef(Routes.conversationList, page: ConversationList),
     RouteDef(Routes.conversationsWrapper, page: ConversationsWrapper),
   ];
@@ -213,11 +217,13 @@ class StackedRouter extends RouterBase {
         orElse: () => ChatArguments(),
       );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => Chat(
-          uid: args.uid,
-          contact: args.contact,
-          convoID: args.convoID,
-        ),
+        builder: (context) => Chat(chatRoomId: args.chatRoomId),
+        settings: data,
+      );
+    },
+    ChatRoom: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChatRoom(),
         settings: data,
       );
     },
@@ -283,8 +289,6 @@ class CheckoutScreenArguments {
 
 /// Chat arguments holder class
 class ChatArguments {
-  final String uid;
-  final AppUser contact;
-  final String convoID;
-  ChatArguments({this.uid, this.contact, this.convoID});
+  final String chatRoomId;
+  ChatArguments({this.chatRoomId});
 }

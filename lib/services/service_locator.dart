@@ -3,6 +3,7 @@ import 'package:share_a_book/business_logic/view_models/add_book_viewmodel.dart'
 import 'package:share_a_book/business_logic/view_models/book_detail_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/change_password_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/chat_viewmodel.dart';
+import 'package:share_a_book/business_logic/view_models/chatrooms_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/checkout_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/conversation_list_viewmodel.dart';
 import 'package:share_a_book/business_logic/view_models/find_book_viewmodel.dart';
@@ -89,4 +90,5 @@ void setupServiceLocator() {
   serviceLocator.registerFactory<ChatViewModel>(() => ChatViewModel());
   serviceLocator.registerFactory<ConversationListViewModel>(
       () => ConversationListViewModel());
+  serviceLocator.registerFactory<ChatRoomViewModel>(() => ChatRoomViewModel());
 }

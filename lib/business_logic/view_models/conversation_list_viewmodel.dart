@@ -46,11 +46,11 @@ class ConversationListViewModel extends ChangeNotifier {
     return list;
   }
 
-  Stream<List<Conversation>> streamConversations(uid) {
-    return _databaseService.streamConversations(uid);
-  }
+  // Stream<List<Conversation>> streamConversations(uid) {
+  //   return _databaseService.streamConversations(uid);
+  // }
 
-  Stream<List<AppUser>> streamUsers() {
-    return _databaseService.streamUsers();
-  }
+  // Stream<List<AppUser>> streamUsers() {
+  //   return _databaseService.streamUsers();
+  // }
 }

@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:share_a_book/app/app.router.dart';
 import 'package:share_a_book/business_logic/models/user.dart';
-import 'package:share_a_book/services/service_locator.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class ConvoListItem extends StatelessWidget {
   ConvoListItem(
@@ -46,9 +43,9 @@ class ConvoListItem extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () async {
-        await serviceLocator<NavigationService>().navigateTo(Routes.chat,
-            arguments: ChatArguments(
-                uid: appUser.uid, contact: peer, convoID: getGroupChatId()));
+        // await serviceLocator<NavigationService>().navigateTo(Routes.chat,
+        //     arguments: ChatArguments(
+        //         uid: appUser.uid, contact: peer, convoID: getGroupChatId()));
         // Navigator.of(context).pushReplacement(MaterialPageRoute(
         //     builder: (BuildContext context) => NewConversationScreen(
         //         uid: user.uid, contact: peer, convoID: getGroupChatId())));

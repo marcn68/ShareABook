@@ -7,4 +7,9 @@ class ChatServiceImplementation extends ChatService {
         ? userId + '_' + peerId
         : peerId + '_' + userId;
   }
+
+  @override
+  getChatRoomId(String a, String b) {
+    return a.hashCode <= b.hashCode ? a + '_' + b : b + '_' + a;
+  }
 }

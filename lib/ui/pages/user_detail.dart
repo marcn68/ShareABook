@@ -108,14 +108,12 @@ class _UserDetailState extends State<UserDetail> {
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
                     onPressed: () async {
-                      String convoId = model.createConversation(
-                          loggedUser.uid, widget.user.uid);
+                      String chatRoomId = model.createChatRoom(
+                          loggedUser.fullName, widget.user.fullName);
+                      Constants.myName = loggedUser.fullName;
                       await serviceLocator<NavigationService>().navigateTo(
                           Routes.chat,
-                          arguments: ChatArguments(
-                              uid: loggedUser.uid,
-                              contact: widget.user,
-                              convoID: convoId));
+                          arguments: ChatArguments(chatRoomId: chatRoomId));
                     },
                   ),
                 ),

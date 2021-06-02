@@ -70,14 +70,14 @@ class _ConversationsWrapperState extends State<ConversationsWrapper> {
     final AppUser user = Provider.of<AppUser>(context);
     return MultiProvider(
       providers: [
-        StreamProvider<List<Conversation>>.value(
-          initialData: null,
-          value: model.streamConversations(user.uid),
-        ),
-        StreamProvider<List<AppUser>>.value(
-          initialData: null,
-          value: model.streamUsers(),
-        ),
+        // StreamProvider<List<Conversation>>.value(
+        //   initialData: null,
+        //   value: model.streamConversations(user.uid),
+        // ),
+        // StreamProvider<List<AppUser>>.value(
+        //   initialData: null,
+        //   value: model.streamUsers(),
+        // ),
       ],
       child: ConversationList(),
     );
